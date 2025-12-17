@@ -24,12 +24,8 @@ const navLinks: NavItem[] = [
     children: [
       { label: "About", href: "/about" },
       { label: "Vision", href: "/about#vision-mission" },
-      { label: "Board Members", href: "/leadership#board" },
       { label: "Leadership", href: "/leadership" },
       { label: "Finance", href: "/finance" },
-      { label: "Client", href: "/clients" },
-      { label: "Social Responsibility", href: "/social-responsibility" },
-      { label: "Awards & Recognitions", href: "/awards" },
     ],
   },
   { label: "PLANT & MACHINERY", href: "/plant-machinery" },
@@ -159,6 +155,7 @@ export default function RootLayout({
                   BBD Infra Pvt. Ltd. (formerly Balaji Builders & Developers) — delivering reliable water networks,
                   resilient roads, bridges and urban infrastructure with disciplined project controls and a people‑first approach.
                 </p>
+                <p className="mt-1 text-xs text-white/85">GSTIN - 27AANCB1799H1Z6</p>
                 <div className="flex items-center gap-3 pt-2">
                   <a aria-label="Facebook" href="#" className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">f</a>
                   <a aria-label="Instagram" href="#" className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">ig</a>
@@ -203,6 +200,20 @@ export default function RootLayout({
                   <p className="font-semibold">Registered Office</p>
                   <p>Ward No. 03, Saoji Galli, Dongaon</p>
                   <p>Tq. Mehkar, Dist. Buldhana, Maharashtra</p>
+                  {/* ISO 9001 badge (moved below Registered Office) */}
+                  <div className="mt-3 flex items-center gap-3">
+                    <Image
+                      src="/images/iso-9001-2015-certification.png"
+                      alt="ISO 9001:2015 Certification"
+                      width={56}
+                      height={56}
+                      className="h-14 w-14 object-contain"
+                    />
+                    <div className="leading-tight">
+                      <p className="text-sm font-semibold text-white">ISO 9001:2015 Certified</p>
+                      <p className="text-xs text-white/80">Quality Management System</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -26,7 +26,8 @@ const timeline = [
 const fadeUp = { initial: { opacity: 0, y: 32 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 }, transition: { duration: 0.55, ease: "easeOut" } };
 
 export default function AboutPage() {
-  const [heroSrc, setHeroSrc] = useState<string>("/images/about-herov1.jpg");
+  // Primary About banner image (place your file at public/images/about_us_image.jpg)
+  const [heroSrc, setHeroSrc] = useState<string>("/images/about_us_image.jpg");
   const AnimatedCounter = ({ value, prefix = "", suffix = "" }: { value: number; prefix?: string; suffix?: string }) => {
     const [display, setDisplay] = useState(0);
     const ref = useRef<HTMLSpanElement | null>(null);
@@ -57,7 +58,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Full-bleed hero */}
-      <section className="relative h-[90vh] w-screen overflow-hidden">
+      <section className="relative h-[40vh] sm:h-[45vh] w-screen overflow-hidden">
         <Image
           src={heroSrc}
           alt="Highway construction background"
@@ -65,7 +66,8 @@ export default function AboutPage() {
           sizes="100vw"
           priority
           className="object-cover"
-          onError={() => setHeroSrc("https://images.unsplash.com/photo-1605365071581-c7c7a9d8231b?auto=format&fit=crop&w=1800&q=80")}
+          unoptimized
+          onError={() => setHeroSrc("/images/about-hero.jpg")}
         />
         <div className="absolute inset-0 bg-[rgba(0,0,0,0.45)]" />
         <div className="relative z-10 mx-auto flex h-full w-full max-w-7xl flex-col justify-end px-5 pb-8 sm:px-10">

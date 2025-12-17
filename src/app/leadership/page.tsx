@@ -2,60 +2,58 @@
 
 import Image from "next/image";
 
-const leaders = [
-  {
-    name: "Mr. Abhijit (Jitu) Saoji",
-    title: "Founder & Director",
-    summary:
-      "15+ years delivering highways, water schemes, and civic infrastructure with an unwavering focus on quality, transparency, and timely delivery.",
-    biography:
-      "Mr. Abhijit Saoji transformed Balaji Builders & Developers into BBD Infra Pvt. Ltd. by blending grassroots execution with institutional-grade governance. He oversees tender strategy, stakeholder alignment, site reviews, and financial discipline across a ₹800+ Cr portfolio.",
-    image:
-      "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=640&q=80",
-  },
-  {
-    name: "Mr. Atharva Abhijit Saoji",
-    title: "Director",
-    summary:
-      "Civil Engineer & MBA (University of Strathclyde) leading digital transformation, ESG integration, and national expansion initiatives.",
-    biography:
-      "Mr. Atharva Saoji champions Primavera P6, BIM 360, GIS, and AI-enabled risk models across BBD Infra projects. His focus on smart infrastructure, sustainability, and technology partnerships positions the organisation for pan-India growth under programmes like PM Gati Shakti and Smart Cities.",
-    image:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=640&q=80",
-  },
-];
-
 export default function LeadershipPage() {
   return (
-    <div className="mx-auto flex max-w-6xl flex-col gap-16 px-5 pb-24 pt-16 sm:px-10">
-      <header className="space-y-6 text-center">
-        <p className="inline-flex items-center gap-2 rounded-full bg-[#eef3ff] px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--bbd-primary)]">
-          Leadership
-        </p>
-        <h1 className="text-4xl font-semibold text-[#0b1e3f] sm:text-5xl">Leadership that Elevates and Empowers</h1>
-        <p className="mx-auto max-w-3xl text-base text-[#405170]">
-          Guided by decades of execution experience and a forward-looking digital strategy, our leadership ensures every project delivers
-          lasting value for communities, partners, and stakeholders.
-        </p>
-      </header>
-
-      <section id="board" className="grid gap-8 md:grid-cols-2">
-        {leaders.map((leader) => (
-          <article key={leader.name} className="flex flex-col overflow-hidden rounded-[28px] border border-[#dbe4f4] bg-white shadow-[0_18px_48px_-32px_rgba(11,61,145,0.3)]">
-            <div className="relative h-72 overflow-hidden">
-              <Image src={leader.image} alt={leader.name} width={640} height={720} className="h-full w-full object-cover" />
-            </div>
-            <div className="flex flex-1 flex-col gap-4 p-6 text-sm text-[#405170]">
-              <div>
-                <h2 className="text-xl font-semibold text-[#0b1e3f]">{leader.name}</h2>
-                <p className="text-sm font-medium text-[var(--bbd-accent)]">{leader.title}</p>
-              </div>
-              <p>{leader.summary}</p>
-              <p>{leader.biography}</p>
-            </div>
-          </article>
-        ))}
+    <>
+      {/* Full-bleed hero (outside container) */}
+      <section className="relative mb-6 sm:mb-8 h-[50vh] min-h-[360px] w-screen overflow-hidden bg-black">
+        <Image src="/images/Leadership.png" alt="Our Leadership" fill priority sizes="100vw" className="object-contain" unoptimized />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-5 sm:px-10">
+          <div>
+            <p className="text-lg font-medium text-white">Our <span className="text-[var(--bbd-accent)] font-semibold">Leadership</span></p>
+            <p className="mt-2 max-w-xl text-sm text-white/85">Leadership is the capacity to translate vision into reality.</p>
+          </div>
+        </div>
       </section>
-    </div>
+
+      <div className="mx-auto flex max-w-7xl flex-col px-5 pb-24 sm:px-10">
+        {/* Founder & Director — image left, text right; aligned top; single paragraph */}
+        <section className="mx-auto grid w-full max-w-7xl items-start gap-4 grid-cols-[0.8fr_1.2fr] md:gap-8">
+          <div className="relative w-full h-[240px] sm:h-[280px] md:h-[300px] overflow-hidden rounded-xl bg-white shadow-[0_18px_48px_-32px_rgba(11,61,145,0.3)]">
+            <Image src="/images/Mr.%20Abhijeet%20Saoji.jpg" alt="Mr. Abhijit (Jitu) Saoji" fill className="object-cover" unoptimized />
+          </div>
+          <div className="flex flex-col justify-start gap-2 sm:gap-3 text-[#405170]">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--bbd-primary)]">Founder & Director</p>
+            <h1 className="text-2xl font-semibold text-[#0b1e3f] sm:text-3xl">Mr. Abhijit Saoji</h1>
+            <p className="text-sm leading-relaxed">
+              Founded and guided by Mr. Abhijit Saoji, BBD Infra Pvt. Ltd. has been built on a foundation of vision, resilience and an unwavering commitment to building
+              quality infrastructure that lasts generations. With over 15 years of hands on experience in project execution, cost management and stakeholder coordination, he
+              transformed a modest village based contracting initiative into a prominent, government recognised infrastructure firm active across multiple districts in
+              Maharashtra, including Buldhana, Yavatmal and Amravati. Under his stewardship, the company has completed 50+ government‑backed projects and secured contracts
+              worth ₹800+ crores, with notable capabilities in 24x7 water supply, roads, urban development and solar high‑mast installations. His leadership emphasises ethical
+              business, direct involvement in critical phases and empowering local talent through modern construction practices and safety standards.
+            </p>
+          </div>
+        </section>
+
+        {/* Director — match Founder layout: image left, text right, same sizing */}
+        <section className="mx-auto mt-16 grid w-full max-w-7xl items-start gap-4 grid-cols-[0.8fr_1.2fr] md:gap-8">
+          <div className="relative w-full h-[240px] sm:h-[280px] md:h-[300px] overflow-hidden rounded-xl bg-white shadow-[0_18px_48px_-32px_rgba(11,61,145,0.3)]">
+            <Image src="/images/leader-atharva.svg" alt="Mr. Atharva Abhijit Saoji" fill className="object-contain p-4" />
+          </div>
+          <div className="flex flex-col justify-start gap-2 sm:gap-3 text-[#405170]">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[var(--bbd-primary)]">Director</p>
+            <h2 className="text-2xl font-semibold text-[#0b1e3f] sm:text-3xl">Mr. Atharva Abhijit Saoji</h2>
+            <p className="text-sm leading-relaxed">
+              A Civil Engineer (B.Tech) and MBA (University of Strathclyde, Scotland), Mr. Atharva Saoji represents the new generation of leadership — driving Primavera P6, BIM, GIS, drone surveys, and IoT‑based monitoring across BBD Infra projects.
+            </p>
+            <p className="text-sm leading-relaxed">
+              He is advancing the company towards smart, sustainable infrastructure with AI‑eUnknown category.nabled risk models, ESG integration, and digital dashboards, enabling predictable delivery and national‑scale readiness under programmes like PM Gati Shakti, Jal Jeevan Mission, Amrut 2.0, and Smart Cities.
+            </p>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }
