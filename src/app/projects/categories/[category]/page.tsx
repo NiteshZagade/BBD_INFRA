@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { projectsByCategory } from "../../data";
+import { use } from "react";
+import ProjectTabs, { type DisplayProject } from "@/components/ProjectTabs";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -9,6 +11,7 @@ const mapSlugToKey = (slug: string) => {
   const direct: Record<string, "roads_highways"|"water_supply"|"urban_infra"|"renewable_solar"> = {
     "roads-highways": "roads_highways",
     "water-supply": "water_supply",
+    "water-supply-network": "water_supply",
     "urban-infrastructure": "urban_infra",
     "renewable-energy": "renewable_solar",
   };
@@ -22,7 +25,7 @@ const mapSlugToKey = (slug: string) => {
 
 const labelMap: Record<string, string> = {
   roads_highways: "Road & Highways",
-  water_supply: "Water Supply",
+  water_supply: "Water Supply Network",
   urban_infra: "Urban Infrastructure",
   renewable_solar: "Renewable Energy / Solar",
 };
@@ -45,8 +48,8 @@ function makeShortTitle(title: string) {
   return s;
 }
 
-export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
-  const { category } = await params;
+export default function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
+  const { category } = use(params);
   const key = mapSlugToKey(category);
   if (!key) return <div className="mx-auto max-w-7xl px-5 py-16">Unknown category.</div>;
   const list = projectsByCategory[key];
@@ -64,21 +67,68 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <Link href="/projects" className="text-sm font-semibold text-[var(--bbd-primary)] hover:text-[var(--bbd-accent)]">← All Projects</Link>
       </header>
 
-      <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {list.map((p, idx) => {
-          const title = makeShortTitle(p.title);
-          const displayType = p.type ?? labelMap[key];
-          return (
-            <article key={`${key}-${idx}`} className="rounded-xl border border-[#e6eaf4] bg-white p-5 shadow-[0_12px_36px_-28px_rgba(11,61,145,0.35)]">
-              <div className="space-y-2">
-                <p className="text-xs text-[#405170]"><span className="font-semibold text-[#0b1e3f]">Title:</span> {title}</p>
-                <p className="text-xs text-[#405170]"><span className="font-semibold text-[#0b1e3f]">Type:</span> {displayType}</p>
-                <p className="text-xs text-[#405170]"><span className="font-semibold text-[#0b1e3f]">District:</span> {p.district}</p>
-              </div>
-            </article>
-          );
-        })}
-      </section>
+      {(() => {
+        const norm = (s: string) =>
+          s
+            .toLowerCase()
+            .replace(/[–—]/g, "-")
+            .replace(/[^a-z0-9\-\s&()]/g, "")
+            .replace(/\s+/g, " ")
+            .trim();
+        const simple = (s: string) =>
+          s
+            .toLowerCase()
+            .replace(/[–—-]/g, "")
+            .replace(/[^a-z0-9]/g, "");
+
+        const deliveredPatterns: Record<string, string[]> = {
+          roads_highways: [
+            "internal cc roads - bagulkhed area",
+            "cement road - sarkari godown",
+            "cc roads - forest & village areas",
+            "cc road - minority colony",
+            "internal cc roads - dongaon area",
+          ],
+          water_supply: [
+            "churni water supply scheme",
+            "wani amrut 2.0 water supply scheme",
+            "daund water supply scheme - part 1 (amrut 2.0)",
+            "daund water supply scheme - part 2 (amrut 2.0)",
+          ],
+          urban_infra: [
+            "informatory sign boards - lonar city",
+            "open space development - gomukh dhar lonar",
+            "furniture & electrification - study center lonar",
+            "sabha mandap - datta mandir",
+            "nagri soyi suvidha yojna - mehkar",
+          ],
+        };
+
+        const patterns = deliveredPatterns[key] ?? null;
+        let deliveredRaw = list;
+        let ongoingRaw: typeof list = [];
+        if (patterns) {
+          deliveredRaw = list.filter((p) => {
+            const t = norm(makeShortTitle(p.title));
+            const ts = simple(t);
+            return patterns.some((pat) => ts.includes(simple(pat)) || t.includes(pat));
+          });
+          ongoingRaw = list.filter((p) => {
+            const t = norm(makeShortTitle(p.title));
+            const ts = simple(t);
+            return !patterns.some((pat) => ts.includes(simple(pat)) || t.includes(pat));
+          });
+        } else {
+          // Default: show all under Ongoing if no explicit patterns
+          ongoingRaw = list;
+          deliveredRaw = [];
+        }
+
+        const toDisplay = (arr: typeof list) =>
+          arr.map<DisplayProject>((p) => ({ title: makeShortTitle(p.title).toUpperCase(), district: p.district }));
+
+        return <ProjectTabs ongoing={toDisplay(ongoingRaw)} delivered={toDisplay(deliveredRaw)} />;
+      })()}
     </div>
   );
 }

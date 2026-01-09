@@ -58,7 +58,7 @@ export default function AboutPage() {
   return (
     <>
       {/* Full-bleed hero */}
-      <section className="relative h-[40vh] sm:h-[45vh] w-screen overflow-hidden">
+      <section className="relative h-[40vh] sm:h-[45vh] w-full overflow-hidden">
         <Image
           src={heroSrc}
           alt="Highway construction background"

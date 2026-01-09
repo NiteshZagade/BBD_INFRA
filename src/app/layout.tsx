@@ -23,7 +23,7 @@ const navLinks: NavItem[] = [
     label: "COMPANY",
     children: [
       { label: "About", href: "/about" },
-      { label: "Vision", href: "/about#vision-mission" },
+      { label: "Vision", href: "/vision" },
       { label: "Leadership", href: "/leadership" },
       { label: "Finance", href: "/finance" },
     ],
@@ -74,28 +74,36 @@ export default function RootLayout({
                     {item.label === "COMPANY" && item.children && (
                       <div className="pointer-events-none absolute left-1/2 top-full z-50 w-[min(92vw,72rem)] -translate-x-1/2 pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
                         <div className="rounded-md border border-[#22345b] bg-[#0f1d33]/95 p-6 text-white shadow-[0_24px_60px_-30px_rgba(0,0,0,0.6)]">
-                          <div className="grid gap-6 sm:grid-cols-2">
-                            <ul className="space-y-2">
-                              {item.children.slice(0, 4).map((child) => (
-                                <li key={child.href} className="border-b border-white/10 pb-2 last:border-0">
-                                  <Link href={child.href} className="flex items-center justify-between px-3 py-2 hover:text-[#ffbe8a]">
-                                    <span>{child.label}</span>
-                                    <span aria-hidden>→</span>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                            <ul className="space-y-2">
-                              {item.children.slice(4).map((child) => (
-                                <li key={child.href} className="border-b border-white/10 pb-2 last:border-0">
-                                  <Link href={child.href} className="flex items-center justify-between px-3 py-2 hover:text-[#ffbe8a]">
-                                    <span>{child.label}</span>
-                                    <span aria-hidden>→</span>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
+                          {(() => {
+                            const first = item.children.slice(0, 4);
+                            const second = item.children.slice(4);
+                            return (
+                              <div className={`grid gap-6 ${second.length ? "sm:grid-cols-2" : "sm:grid-cols-1"}`}>
+                                <ul className="space-y-2">
+                                  {first.map((child) => (
+                                    <li key={child.href} className="border-b border-white/10 pb-2 last:border-0">
+                                      <Link href={child.href} className="flex items-center justify-between px-3 py-2 hover:text-[#ffbe8a]">
+                                        <span>{child.label}</span>
+                                        <span aria-hidden>→</span>
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                                {second.length ? (
+                                  <ul className="space-y-2">
+                                    {second.map((child) => (
+                                      <li key={child.href} className="border-b border-white/10 pb-2 last:border-0">
+                                        <Link href={child.href} className="flex items-center justify-between px-3 py-2 hover:text-[#ffbe8a]">
+                                          <span>{child.label}</span>
+                                          <span aria-hidden>→</span>
+                                        </Link>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                ) : null}
+                              </div>
+                            );
+                          })()}
                         </div>
                       </div>
                     )}
@@ -120,30 +128,6 @@ export default function RootLayout({
           </header>
           <main>{children}</main>
           <footer className="border-t border-[#083075] bg-[#0B3D91] text-white">
-            {/* Contact strip */}
-            {/* Full-bleed contact strip */}
-            <div className="-mt-6 w-screen px-5 sm:px-10">
-              <div className="mx-auto grid w-full max-w-6xl gap-4 rounded-2xl bg-white px-6 py-4 text-[#0b1e3f] shadow-[0_18px_40px_-24px_rgba(0,0,0,0.5)] sm:grid-cols-2">
-                <div className="flex items-center gap-3">
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#0B3D91] text-white">☎</span>
-                  <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#0b1e3f]/70">Phone</p>
-                    <Link href="tel:+919921342002" className="text-sm font-medium hover:text-[#0B3D91]">
-                      +91 99213 42002
-                    </Link>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#0B3D91] text-white">✉</span>
-                  <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#0b1e3f]/70">Email</p>
-                    <Link href="mailto:balajiproj2017@gmail.com" className="text-sm font-medium hover:text-[#0B3D91]">
-                      balajiproj2017@gmail.com
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
 
             <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:grid-cols-2 md:grid-cols-4 sm:px-10">
               {/* Brand and blurb */}
@@ -152,10 +136,12 @@ export default function RootLayout({
                   <Image src="/logo-bbd.svg" alt="BBD Infra logo" width={140} height={44} className="h-10 w-auto" />
                 </div>
                 <p className="text-sm/6 text-white/85">
-                  BBD Infra Pvt. Ltd. (formerly Balaji Builders & Developers) — delivering reliable water networks,
-                  resilient roads, bridges and urban infrastructure with disciplined project controls and a people‑first approach.
+                  BBD Infra Pvt. Ltd. (formerly Balaji Builders & Developers) delivering reliable water networks,
+                  resilient roads, bridges and urban infrastructure with disciplined project controls and a people first approach.
                 </p>
-                <p className="mt-1 text-xs text-white/85">GSTIN - 27AANCB1799H1Z6</p>
+                <p className="mt-1 text-xs text-white/85">
+                  <strong>GSTIN - 27AANCB1799H1Z6</strong>
+                </p>
                 <div className="flex items-center gap-3 pt-2">
                   <a aria-label="Facebook" href="#" className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">f</a>
                   <a aria-label="Instagram" href="#" className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">ig</a>
@@ -165,7 +151,7 @@ export default function RootLayout({
 
               {/* Quick links */}
               <div>
-                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-white/70">Quick Links</p>
+                <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-white/70">Quick Links</p>
                 <ul className="space-y-2 text-sm/6 text-white/85">
                   <li><Link href="/about" className="hover:text-white">About</Link></li>
                   <li><Link href="/plant-machinery" className="hover:text-white">Plant &amp; Machinery</Link></li>
@@ -178,19 +164,18 @@ export default function RootLayout({
 
               {/* Our projects (domains) */}
               <div>
-                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.25em] text-white/70">Our Projects</p>
+                <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-white/70">Our Projects</p>
                 <ul className="space-y-2 text-sm/6 text-white/85">
-                  <li>Roads &amp; Highways</li>
-                  <li>Water Infrastructure</li>
-                  <li>Bridges &amp; Structures</li>
-                  <li>Urban Development</li>
-                  <li>Energy &amp; Sustainability</li>
+                  <li><Link href="/projects/categories/water-supply" className="hover:text-white">Water Supply Network</Link></li>
+                  <li><Link href="/projects/categories/roads-highways" className="hover:text-white">Road &amp; Highways</Link></li>
+                  <li><Link href="/projects/categories/urban-infrastructure" className="hover:text-white">Urban Infrastructure</Link></li>
+                  <li><Link href="/projects/categories/renewable-energy" className="hover:text-white">Renewable Energy</Link></li>
                 </ul>
               </div>
 
               {/* Addresses */}
               <div className="space-y-4 text-sm/6 text-white/85">
-                <p className="mb-1 text-sm font-semibold uppercase tracking-[0.25em] text-white/70">Addresses</p>
+                <p className="mb-1 text-sm font-bold uppercase tracking-[0.25em] text-white/70">Addresses</p>
                 <div>
                   <p className="font-semibold">Corporate Office</p>
                   <p>MHADA Colony, DP Road, Mehkar</p>

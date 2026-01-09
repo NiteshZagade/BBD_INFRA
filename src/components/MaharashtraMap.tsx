@@ -78,8 +78,8 @@ export default function MaharashtraMap() {
     <div className="relative mx-auto w-full max-w-5xl overflow-hidden rounded-xl border border-[#e6eaf4] bg-white p-4">
       <div className="relative mx-auto h-[440px] w-full max-w-4xl">
         <svg viewBox="0 0 400 400" className="h-full w-full">
-          {/* drop shadow */}
-          <MahaSilhouette fill="#eef1f7" stroke="#d7dfee" strokeWidth={2} />
+          {/* silhouette filled with site background (#EDEDED) */}
+          <MahaSilhouette fill="var(--color-background)" stroke="#EDEDED" strokeWidth={2} />
 
           {/* District pins */}
           {districts.map((d) => (
@@ -106,4 +106,3 @@ export default function MaharashtraMap() {
     </div>
   );
 }
-

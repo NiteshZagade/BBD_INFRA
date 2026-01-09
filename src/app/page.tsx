@@ -1,35 +1,36 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import IconicProjects from "@/components/IconicProjects";
-import DatawrapperEmbed from "@/components/DatawrapperEmbed";
+import CanvaEmbed from "@/components/CanvaEmbed";
+// Map embed removed per request
 import { useSiteData } from "@/context/site-data";
 
 const expertise = [
   {
-    title: "Water Infrastructure",
-    icon: "/images/icon-water.svg",
+    title: "Water Supply Network",
+    icon: "/images/water-network.png",
     description:
       "BBD Infra designs and executes 24×7 smart water supply networks across Maharashtra. Expertise: gravity mains, ESRs, WTPs, pumping stations, and IoT‑enabled SCADA systems. Delivering sustainable water infrastructure under Jal Jeevan Mission and Amrut 2.0.",
   },
   {
     title: "INFRA  Development",
-    icon: "/images/icon-building.svg",
+    icon: "/images/infra-dev.png",
     description:
       "End to end design and construction of public, commercial, and residential projects including auditoriums, community halls, industrial warehouses, housing complexes, and cement concrete roads with culverts and drainage systems.",
   },
   {
     title: "Urban Beautification",
-    icon: "/images/icon-urban.svg",
+    icon: "/images/urban-dev.png",
     description:
       "Transforming cities with smart, eco‑friendly design, BBD Infra executes lakefronts, gardens, and public plazas. Projects integrate rainwater harvesting, native landscaping, and zero waste execution.",
   },
   {
     title: "Renewable Energy",
-    icon: "/images/icon-solar.svg",
+    icon: "/images/re-energy.png",
     description:
       "A leader in renewable energy infrastructure, installing 500 + solar high mast lights and achieving up to 80 % energy savings. Integrates solar grids, IoT monitoring, and net zero construction practices.",
   },
@@ -71,7 +72,7 @@ const capabilities = [
     image: "/images/home-highways.jpg",
   },
   {
-    title: "Water Infrastructure",
+    title: "Water Supply Network",
     description:
       "24x7 supply systems, ESRs, WTPs, pumping stations, and SCADA-enabled networks delivering reliable potable water to urban and rural grids.",
     image: "/images/home-water.jpg",
@@ -99,16 +100,22 @@ const AnimatedCounter = ({
   suffix = "",
   delayMs = 0,
   className,
+  start = true,
 }: {
   value: number;
   prefix?: string;
   suffix?: string;
   delayMs?: number;
   className?: string;
+  start?: boolean;
 }) => {
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
+    if (!start) {
+      setDisplay(0);
+      return;
+    }
     let frame: number | null = null;
     let timeout: number | null = null;
     const duration = 1200;
@@ -134,7 +141,7 @@ const AnimatedCounter = ({
       if (frame) cancelAnimationFrame(frame);
       if (timeout) clearTimeout(timeout);
     };
-  }, [value, delayMs]);
+  }, [value, delayMs, start]);
 
   return (
     <span className={className ?? "text-4xl font-semibold text-[var(--bbd-primary)]"}>
@@ -185,6 +192,8 @@ const FinanceChart = ({ data }: { data: { year: number; revenue: number; profit:
 export default function Home() {
   const { data } = useSiteData();
   const [heroSrc, setHeroSrc] = useState<string>("/images/home-hero-bridge.jpg");
+  const legacyRef = useRef<HTMLElement | null>(null);
+  const legacyInView = useInView(legacyRef, { once: true, amount: 0.3 });
 
   const homeStats = [
     { label: "Projects Delivered", value: data.stats.projectsDelivered, suffix: "+" },
@@ -198,14 +207,14 @@ export default function Home() {
     { value: 100, prefix: "", suffix: "+", unit: "KMS", label: "Road Infrastructure" },
     { value: 500, prefix: "", suffix: "+", unit: "", label: "Solar Installations" },
     { value: 50, prefix: "", suffix: "+", unit: "", label: "Completed Projects" },
-    { value: 800, prefix: "₹", suffix: "+", unit: "CR", label: "Ongoing Projects Value" },
+    { value: 1000, prefix: "₹", suffix: "+", unit: "CR", label: "Ongoing Projects Value" },
     { value: 150, prefix: "", suffix: "+", unit: "", label: "Employees" },
   ];
 
   return (
     <>
       {/* Full-bleed hero */}
-      <section className="relative w-screen min-h-[85vh] overflow-hidden">
+      <section className="relative w-full min-h-[85vh] overflow-hidden">
         <Image
           src={heroSrc}
           alt="BBD Infra — cable-stayed bridge at dusk"
@@ -260,13 +269,15 @@ export default function Home() {
       <div className="mx-auto flex max-w-7xl flex-col gap-24 px-5 pb-24 pt-12 sm:px-10">
 
       {/* A legacy of transformation */}
-      <section className="py-6 md:py-10">
+      <section className="py-6 md:py-10" ref={legacyRef}>
           <div className="space-y-3 max-w-5xl text-left">
           <div className="flex items-center gap-3 text-[#0b1e3f]">
             <span className="h-[3px] w-14 rounded-full bg-[var(--bbd-accent)]" aria-hidden></span>
             <span className="text-base font-semibold uppercase tracking-[0.21em] sm:text-lg">A legacy of transformation</span>
           </div>
-          <h3 className="font-semibold text-[#0b1e3f] text-[30px]">Over 4 decades of infra-excellence</h3>
+          <h3 className="font-semibold text-[22px] sm:text-[24px] md:text-[26px] leading-tight text-[#0b1e3f]">
+            Over 4 decades of infra-excellence
+          </h3>
           <p className="max-w-5xl text-lg font-bold leading-relaxed text-[#0b1e3f] sm:text-xl">
             From our humble beginnings in 2014, BBD Infra has grown into a trusted partner for Maharashtra&apos;s most critical infrastructure needs. Our journey is built on perseverance, quality, and a relentless drive to connect communities.
           </p>
@@ -285,7 +296,7 @@ export default function Home() {
                 >
                   <div className="flex flex-wrap items-baseline gap-1.5 whitespace-normal text-[#0b1e3f]">
                     <span className="text-2xl leading-tight font-semibold sm:text-3xl">
-                      <AnimatedCounter value={it.value} prefix={(it as any).prefix} suffix={it.suffix} />
+                      <AnimatedCounter value={it.value} prefix={(it as any).prefix} suffix={it.suffix} start={legacyInView} />
                     </span>
                     {it.unit ? (
                       <span className="ml-1 inline-block text-sm sm:text-base font-extrabold tracking-[0.08em] text-[var(--bbd-primary)] pr-2 sm:pr-3">
@@ -308,7 +319,9 @@ export default function Home() {
               <span className="h-[3px] w-14 rounded-full bg-[var(--bbd-accent)]" aria-hidden></span>
               <span className="text-base font-semibold uppercase tracking-[0.21em] sm:text-lg">Our Expertise</span>
             </div>
-            <h2 className="font-semibold text-[30px] leading-tight text-[#0b1e3f]">Building Tomorrow’s Infrastructure, Today</h2>
+            <h2 className="font-semibold text-[22px] sm:text-[24px] md:text-[26px] leading-tight text-[#0b1e3f]">
+              Building Tomorrow’s Infrastructure, Today
+            </h2>
           </div>
 
           <motion.div
@@ -328,8 +341,24 @@ export default function Home() {
                 transition={{ duration: 0.6, ease: "easeOut" }}
                 className="flex flex-col items-start text-left transition-transform duration-300 hover:scale-[1.02]"
               >
-                <span className="grid h-20 w-20 place-items-center rounded-full border-2 border-[#d1d5db] text-2xl font-bold text-[#333]">
-                  {idx + 1}
+                <span className="grid h-20 w-20 place-items-center rounded-full border-2 border-[#d1d5db] bg-white overflow-hidden p-1.5">
+                  {item.icon ? (
+                    // use native img for maximum compatibility with inline SVGs
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.icon}
+                      alt=""
+                      width={64}
+                      height={64}
+                      className="h-full w-full object-cover scale-[1.30]"
+                      onError={(e) => {
+                        // fallback to number if icon path fails
+                        (e.currentTarget.parentElement as HTMLElement).innerText = String(idx + 1);
+                      }}
+                    />
+                  ) : (
+                    <span className="text-xl font-bold text-[#333]">{idx + 1}</span>
+                  )}
                 </span>
                 <div className="mt-5 w-full max-w-xs">
                   <h3 className="text-base font-bold uppercase tracking-[0.12em] text-black">{item.title}</h3>
@@ -355,47 +384,148 @@ export default function Home() {
               <span className="h-[3px] w-14 rounded-full bg-[var(--bbd-accent)]" aria-hidden></span>
               <span className="text-base font-semibold uppercase tracking-[0.21em] sm:text-lg">Iconic Projects</span>
             </div>
-            <h2 className="font-semibold text-[22px] sm:text-[24px] md:text-[26px] leading-tight text-[#0b1e3f] whitespace-nowrap">We have successfully delivered a range of projects. Some of our Iconic Projects.</h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="font-semibold text-[22px] sm:text-[24px] md:text-[26px] leading-tight text-[#0b1e3f]"
+            >
+              Flagship projects showcasing scale, credibility, and execution strength.
+            </motion.h2>
           </div>
         </div>
       </section>
 
       {/* Iconic Projects (DBL-style) below the heading */}
-      <div className="mt-0">
+      <div className="-mt-2">
         <IconicProjects />
       </div>
 
-      {/* Maharashtra project footprint */}
-      <section className="mt-10">
-        <div className="mx-auto max-w-7xl">
+      {/* Our Clients heading */}
+      <section className="pt-10 pb-4 -mt-[2cm]">
+        <div className="mx-auto max-w-7xl px-6">
           <div className="space-y-3 max-w-5xl text-left">
             <div className="flex items-center gap-3 text-[#0b1e3f]">
               <span className="h-[3px] w-14 rounded-full bg-[var(--bbd-accent)]" aria-hidden></span>
-              <span className="text-base font-semibold uppercase tracking-[0.21em] sm:text-lg">Maharashtra Project Footprint</span>
+              <span className="text-base font-semibold uppercase tracking-[0.21em] sm:text-lg">Our Clients</span>
             </div>
-            <p className="text-sm text-[#405170]">Hover over markers to view district-wise highlights.</p>
-          </div>
-        </div>
-        <div className="mt-4">
-          <div className="mx-auto max-w-5xl overflow-hidden rounded-xl border border-[#e6eaf4] bg-white p-2">
-            <DatawrapperEmbed chartId="OnBCa" minHeight={528} />
+            <h2 className="font-semibold text-[22px] sm:text-[24px] md:text-[26px] leading-tight text-[#0b1e3f]">
+              Trusted by government departments and public sector institutions across Maharashtra.
+            </h2>
           </div>
         </div>
       </section>
 
-      <motion.section {...fadeUp} className="rounded-[32px] border border-[#dbe4f4] bg-gradient-to-r from-white via-[#eef4ff] to-white px-8 py-10 sm:flex sm:items-center sm:justify-between">
-        <div className="space-y-3 text-[#0b1e3f]">
-          <h2 className="text-3xl font-semibold">Ready to discuss your next mandate?</h2>
-          <p className="text-base text-[#405170]">
-            Bring your stakeholders for a discovery session. We&apos;ll align scope, milestones, and delivery frameworks backed by Atlas™ insights.
-          </p>
+      {/* Our Clients */}
+      <section className="pb-12">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="rounded-[28px] bg-white px-6 py-12 text-center shadow-[0_30px_60px_-35px_rgba(0,0,0,0.35)]">
+            {/* Highlight Banner */}
+            <div className="rounded-xl bg-[#0B3D91] px-6 py-10">
+              <h3 className="text-2xl font-semibold text-white">Government & PSU Partners</h3>
+              <p className="mx-auto mt-3 max-w-3xl text-white/90">
+                We are proud to collaborate with state and local authorities, delivering critical infrastructure projects that drive public welfare and regional development.
+              </p>
+            </div>
+
+            {/* Logo Grid */}
+            <div className="mt-12 grid grid-cols-2 items-center gap-10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6" aria-label="Client logos">
+              <div className="mx-auto h-20 w-auto">
+                <Image src="/images/pwd-maharashtra.png" alt="PWD Maharashtra" width={220} height={80} className="h-20 w-auto object-contain" />
+              </div>
+              <div className="mx-auto h-20 w-auto">
+                <Image src="/images/mjp.png" alt="Maharashtra Jeevan Pradhikaran" width={220} height={80} className="h-20 w-auto object-contain" />
+              </div>
+              <div className="mx-auto h-20 w-auto">
+                <Image src="/images/urban-development.png" alt="Urban Development Department" width={220} height={80} className="h-20 w-auto object-contain" />
+              </div>
+              <div className="mx-auto h-20 w-auto">
+                <Image src="/images/jal-jeevan-mission.png" alt="Jal Jeevan Mission" width={220} height={80} className="h-20 w-auto object-contain" />
+              </div>
+              <div className="mx-auto h-20 w-auto">
+                <Image src="/images/amrut-2.png" alt="AMRUT 2.0" width={220} height={80} className="h-20 w-auto object-contain" />
+              </div>
+              <div className="mx-auto h-20 w-auto">
+                <Image src="/images/zilla-parishad.png" alt="Zilla Parishad" width={220} height={80} className="h-20 w-auto object-contain" />
+              </div>
+            </div>
+
+            {/* Optional Text List */}
+            <div className="mt-10 text-[15px] font-medium text-gray-700 sm:text-base">
+              <span className="font-semibold">Municipal Councils:</span>{" "}
+              <span>Mehkar, Lonar, Wani, Indapur, Pandharkawada</span>
+              <br />
+              <span className="font-semibold">Zilla Parishads:</span>{" "}
+              <span>Buldhana, Yavatmal, Amravati</span>
+            </div>
+          </div>
         </div>
-        <Link
-          href="/contact"
-          className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--bbd-accent)] px-8 py-3 text-white shadow-[0_15px_34px_-16px_rgba(255,107,0,0.5)] transition hover:bg-[var(--bbd-accent-soft)] sm:mt-0"
-        >
-          Contact BBD Infra
-        </Link>
+      </section>
+
+      {/* Maharashtra project footprint with Canva embed */}
+      <section className="mt-10">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-5xl text-left">
+            <div className="flex items-center gap-3 text-[#0b1e3f]">
+              <span className="h-[3px] w-14 rounded-full bg-[var(--bbd-accent)]" aria-hidden></span>
+              <span className="text-base font-semibold uppercase tracking-[0.21em] sm:text-lg">Maharashtra Project Footprint</span>
+            </div>
+          </div>
+        </div>
+        <div className="mx-auto max-w-3xl">
+          <CanvaEmbed src="https://www.canva.com/design/DAG8Zt6X7X4/MiU44UIG8DNhhVdQhOzpdg/view?embed" ratio={78.9551} />
+        </div>
+      </section>
+
+      <motion.section
+        {...fadeUp}
+        className="relative overflow-hidden rounded-[28px] border border-[#0a2e71] bg-[#0B1E3F] px-6 py-8 text-white shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)] sm:px-10 sm:py-10"
+      >
+        {/* Right image with soft mask */}
+        <div className="pointer-events-none absolute inset-0">
+          <Image
+            src="/images/home-hero-bridge.jpg"
+            alt="Strategy meeting"
+            fill
+            className="object-cover object-center opacity-70"
+            priority={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1E3F] via-[#0B1E3F]/85 to-transparent" />
+        </div>
+
+        <div className="relative z-10 grid items-center gap-6 sm:grid-cols-[1.2fr_0.8fr]">
+          <div className="space-y-4">
+            <h2 className="text-2xl font-semibold leading-snug sm:text-3xl">Ready to discuss your next mandate?</h2>
+            <p className="text-sm leading-relaxed text-white/90">
+              Bring your stakeholders for a focused discovery session. We collaborate to define scope, milestones, and delivery frameworks—backed by
+              data-driven insights and proven execution expertise.
+            </p>
+            <div className="flex flex-wrap items-center gap-3 pt-2 sm:flex-nowrap">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--bbd-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_15px_34px_-16px_rgba(255,107,0,0.55)] transition hover:bg-[var(--bbd-accent-soft)]"
+              >
+                <span aria-hidden>✉</span>
+                Contact BBD Infra
+              </Link>
+              <a
+                href="tel:+919921342002"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:bg-white/10"
+              >
+                <span aria-hidden>☎</span>
+                +91 99213 42002
+              </a>
+              <a
+                href="mailto:nitesh.zagade@gmail.com"
+                className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:bg-white/10"
+              >
+                <span aria-hidden>✉</span>
+                nitesh.zagade@gmail.com
+              </a>
+            </div>
+          </div>
+        </div>
       </motion.section>
       </div>
     </>

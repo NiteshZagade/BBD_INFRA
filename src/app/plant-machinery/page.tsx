@@ -72,16 +72,15 @@ export default function PlantMachineryPage() {
     );
   };
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-12 px-5 pb-24 pt-12 sm:px-10">
-      <header className="space-y-6">
-        <h1 className="text-center text-4xl font-semibold text-[#0b1e3f] sm:text-5xl">Plant &amp; Machinery</h1>
-        <p className="mx-auto max-w-3xl text-center text-sm text-[#405170]">
-          Our owned fleet supports predictable execution across roads, water and urban projects. Below is a representative list of
-          key equipment deployed across our sites.
-        </p>
+    <div className="mx-auto flex max-w-7xl flex-col gap-10 px-5 pb-24 pt-12 sm:px-10">
+      <header className="mb-2">
+        <div className="flex items-center gap-3 text-[#0b1e3f]">
+          <span className="h-[3px] w-14 rounded-full bg-[var(--bbd-accent)]" aria-hidden></span>
+          <h1 className="text-xl font-semibold uppercase tracking-[0.21em] sm:text-2xl">Plant &amp; Machinery</h1>
+        </div>
       </header>
 
-      <section className="grid gap-10 md:grid-cols-3">
+      <section className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {fleet.map((item) => (
           <figure key={item.name} className="group">
             <button

@@ -65,3 +65,24 @@ a {
   vertical-align: -0.1em;
   animation: caret-blink 1s step-end infinite;
 }
+
+/* Swiper navigation — custom white circular buttons */
+.swiper-button-prev, .swiper-button-next {
+  color: #0B1E3F;
+  background: #fff;
+  border-radius: 9999px;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  border: 1px solid rgba(0,0,0,0.1);
+}
+.swiper-button-prev::after, .swiper-button-next::after {
+  font-size: 16px;
+  font-weight: 700;
+}
+.swiper-button-disabled { opacity: 0.35; }
+
+/* Move pagination bullets 1cm down (~38px) */
+.swiper-pagination {
+  bottom: 10px !important;
+}
