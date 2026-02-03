@@ -517,11 +517,11 @@ export default function Home() {
                 +91 99213 42002
               </a>
               <a
-                href="mailto:nitesh.zagade@gmail.com"
+                href="mailto:atharvasaoji99@bbdinfra.in"
                 className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:bg-white/10"
               >
                 <span aria-hidden>✉</span>
-                nitesh.zagade@gmail.com
+                atharvasaoji99@bbdinfra.in
               </a>
             </div>
           </div>

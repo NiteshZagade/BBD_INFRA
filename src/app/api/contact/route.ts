@@ -38,7 +38,7 @@ export async function POST(req: Request) {
     await fs.writeFile(filePath, JSON.stringify(all, null, 2));
 
     // Attempt email delivery via RESEND first, then SMTP if configured
-    const toAddress = process.env.CONTACT_TO || process.env.SMTP_TO || "nitesh.zagade@gmail.com";
+    const toAddress = process.env.CONTACT_TO || process.env.SMTP_TO || "atharvasaoji99@bbdinfra.in";
     const subject = `New website inquiry — ${name}`;
     const html = `
       <h2>New Website Inquiry</h2>
