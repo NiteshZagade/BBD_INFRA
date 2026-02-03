@@ -78,8 +78,8 @@ export default function ContactPage() {
             </p>
             <p>
               Email:{" "}
-              <Link href="mailto:nitesh.zagade@gmail.com" className="font-semibold text-[var(--bbd-primary)]">
-                nitesh.zagade@gmail.com
+              <Link href="mailto:atharvasaoji99@bbdinfra.in" className="font-semibold text-[var(--bbd-primary)]">
+                atharvasaoji99@bbdinfra.in
               </Link>
             </p>
           </div>
@@ -152,7 +152,7 @@ export default function ContactPage() {
             <p className="text-[13px] font-medium text-green-700">
               Thank you. Your request has been recorded. You may also email us at
               {" "}
-              <a href="mailto:nitesh.zagade@gmail.com" className="underline">nitesh.zagade@gmail.com</a>.
+              <a href="mailto:atharvasaoji99@bbdinfra.in" className="underline">atharvasaoji99@bbdinfra.in</a>.
             </p>
           ) : null}
           <div className="flex items-center gap-3 pt-1">
@@ -164,7 +164,7 @@ export default function ContactPage() {
               {status === "submitting" ? "Submitting…" : "Submit Request"}
             </button>
             <a
-              href={`mailto:nitesh.zagade@gmail.com?subject=${encodeURIComponent("Contact via website")}&body=${encodeURIComponent(`${name}\n${email}\n${phone}\nFocus: ${focus}\n\n${message}`)}`}
+              href={`mailto:atharvasaoji99@bbdinfra.in?subject=${encodeURIComponent("Contact via website")}&body=${encodeURIComponent(`${name}\n${email}\n${phone}\nFocus: ${focus}\n\n${message}`)}`}
               className="inline-flex items-center justify-center rounded-full border border-[var(--bbd-primary)] px-6 py-3 text-sm font-semibold text-[var(--bbd-primary)] hover:border-[var(--bbd-primary-soft)] hover:text-[var(--bbd-primary-soft)]"
             >
               Email Us

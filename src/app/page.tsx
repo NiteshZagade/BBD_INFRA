@@ -498,27 +498,27 @@ export default function Home() {
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold leading-snug sm:text-3xl">Ready to discuss your next mandate?</h2>
             <p className="text-sm leading-relaxed text-white/90">
-              Bring your stakeholders for a focused discovery session. We collaborate to define scope, milestones, and delivery frameworks—backed by
-              data-driven insights and proven execution expertise.
+              Bring your stakeholders for a focused discovery session. We collaborate to define scope, milestones, and delivery frameworks backed by
+              data driven insights and proven execution expertise.
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-2 sm:flex-nowrap">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--bbd-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_15px_34px_-16px_rgba(255,107,0,0.55)] transition hover:bg-[var(--bbd-accent-soft)]"
+                className="inline-flex items-center gap-2 whitespace-nowrap rounded-full bg-[var(--bbd-accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_15px_34px_-16px_rgba(255,107,0,0.55)] transition hover:bg-[var(--bbd-accent-soft)]"
               >
                 <span aria-hidden>✉</span>
                 Contact BBD Infra
               </Link>
               <a
                 href="tel:+919921342002"
-                className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:bg-white/10"
+                className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:bg-white/10"
               >
                 <span aria-hidden>☎</span>
                 +91 99213 42002
               </a>
               <a
                 href="mailto:nitesh.zagade@gmail.com"
-                className="inline-flex items-center gap-2 rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:bg-white/10"
+                className="inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-white/70 px-6 py-3 text-sm font-semibold text-white/95 backdrop-blur-sm transition hover:bg-white/10"
               >
                 <span aria-hidden>✉</span>
                 nitesh.zagade@gmail.com

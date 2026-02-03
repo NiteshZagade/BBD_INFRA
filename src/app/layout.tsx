@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
+import MobileNav from "../components/MobileNav";
+import type { NavItem } from "../components/MobileNav";
 import Providers from "./providers";
 import "./globals.css";
 
@@ -14,8 +16,6 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
-type NavItem = { label: string; href?: string; children?: { label: string; href: string }[] };
 
 const navLinks: NavItem[] = [
   { label: "HOME", href: "/" },
@@ -124,6 +124,7 @@ export default function RootLayout({
                   </div>
                 ))}
               </nav>
+              <MobileNav items={navLinks} />
             </div>
           </header>
           <main>{children}</main>
