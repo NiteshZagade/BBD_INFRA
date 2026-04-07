@@ -79,6 +79,7 @@ export const projectsByCategory: Record<(typeof projectCategories)[number]["key"
     { title: "CC Road – Minority Colony", district: "Buldhana" },
     { title: "Dalit Vasti Road – Lonar", district: "Buldhana" },
     { title: "SH-390 Highway Improvement", district: "Buldhana" },
+    { title: "Jalna–Nanded Expressway", district: "Jalna / Nanded", type: "Ongoing" },
     { title: "Urban Development – Mehkar", district: "Buldhana" },
   ],
   renewable_solar: [

@@ -1,136 +1,187 @@
 "use client";
 
+import type { CSSProperties } from "react";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
-import { useMemo } from "react";
+import { A11y, Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination, A11y } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-type Card = {
-  slug: string;
-  tag: string;
+type ProjectCard = {
   name: string;
-  location: string;
-  value?: string;
-  image?: string;
-  status?: string;
+  value: string;
+  image: string;
+  overview: string;
+  impact: string;
 };
 
-const projects: Card[] = [
+const projects: ProjectCard[] = [
   {
-    slug: "wani-water-supply",
-    tag: "MEGA WATER INFRASTRUCTURE",
-    name: "Wani Water Supply Scheme",
-    location: "Wani, Yavatmal District, Maharashtra",
-    value: "₹140.62 Cr",
-    image: "/images/wani-water-supply.png",
-    status: "Ongoing",
+    name: "Jalna–Nanded Expressway",
+    value: "₹700 Cr",
+    image: "/images/Jalna–Nanded Expressway.png",
+    overview: "Large-scale EPC execution of a major expressway corridor.",
+    impact: "Improved regional connectivity and reduced travel time.",
   },
   {
-    slug: "indapur-cc-road",
-    tag: "URBAN ROAD INFRASTRUCTURE",
-    name: "Indapur CC Road Project",
-    location: "Indapur Municipal Council, Pune District",
+    name: "Indapur CC Road & Drainage Infrastructure",
     value: "₹104.90 Cr",
-    image: "/images/roads-highway.jpg",
-    status: "Ongoing",
+    image: "/images/Indapur CC Road & Drainage Infrastructure.png",
+    overview: "High-durability CC roads and RCC drainage built for urban performance.",
+    impact: "40+ km of enhanced connectivity.",
   },
   {
-    slug: "pandharkawda-water-supply",
-    tag: "REGIONAL WATER SUPPLY",
-    name: "Pandharkawda Water Supply Scheme",
-    location: "Pandharkawda, Yavatmal District",
-    value: "₹68.44 Cr",
-    image: "/images/Pandharkawda-Water-Supply -Scheme.png",
-    status: "Ongoing",
-  },
-  {
-    slug: "sh-390-road-improvement",
-    tag: "MAJOR HIGHWAY INFRASTRUCTURE",
-    name: "SH-390 Road Improvement Project (New NH-753)",
-    location: "Chikhali & Mehkar Taluka, Buldhana District",
-    value: "₹55 Cr",
-    image: "/images/sh-390-road-improvement.jpg",
-    status: "Ongoing",
-  },
-  {
-    slug: "painganga-river-bridge",
-    tag: "MAJOR BRIDGE INFRASTRUCTURE",
-    name: "Painganga River Bridge Project (350 m)",
-    location: "Painganga River, Buldhana Region",
+    name: "Painganga River Bridge",
     value: "₹25 Cr",
-    image: "/images/painganga-river-bridge.jpg",
-    status: "Ongoing",
+    image: "/images/Painganga River Bridge.png",
+    overview: "Strategic bridge infrastructure improving inter-district mobility.",
+    impact: "Reduced travel time and stronger regional access.",
   },
   {
-    slug: "wani-modern-auditorium",
-    tag: "URBAN CULTURAL INFRASTRUCTURE",
-    name: "Wani Modern Auditorium",
-    location: "Wani, Yavatmal District, Maharashtra",
-    value: "₹12 Cr",
-    image: "/images/wani-modern-auditorium.jpg",
-    status: "Ongoing",
+    name: "Pandharkawda Water Supply Scheme",
+    value: "₹68.44 Cr",
+    image: "/images/Pandharkawda Water Supply Scheme.png",
+    overview: "Water source augmentation, pumping systems, and multi-zone pipeline network.",
+    impact: "Improved water accessibility and reduced distribution losses.",
+  },
+  {
+    name: "SH-390 Road Improvement Project",
+    value: "₹55 Cr",
+    image: "/images/SH-390 Road Improvement Project.png",
+    overview: "Road widening and strengthening with pavement, drainage, and safety works.",
+    impact: "Safer travel and better inter-district connectivity.",
+  },
+  {
+    name: "Jal Jeevan Mission – Wani",
+    value: "₹140.62 Cr",
+    image: "/images/Jal Jeevan Mission – Wani.png",
+    overview: "Smart urban water infrastructure with precision distribution systems.",
+    impact: "Stronger regional water security with 24x7-ready capability.",
   },
 ];
 
 export default function IconicProjects() {
-  const VISIBLE = 3;
-  const items = useMemo(() => projects, []);
-
   return (
-    <section className="pt-0 pb-8">
-      <div className="mx-auto max-w-7xl rounded-[28px] bg-white px-6 py-6 shadow-[0_30px_60px_-35px_rgba(0,0,0,0.35)]">
-        <div className="relative pb-10" style={{ ['--swiper-theme-color' as any]: 'var(--bbd-accent)' }}>
-          <Swiper
-          modules={[Autoplay, Navigation, Pagination, A11y]}
-          loop
-          spaceBetween={24}
+    <motion.section
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="mx-auto max-w-[1420px]"
+    >
+      <div
+        className="relative px-2 sm:px-10"
+        style={{ "--swiper-theme-color": "#2d67b1" } as CSSProperties}
+      >
+        <button
+          type="button"
+          className="landmark-prev absolute left-0 top-[34%] z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d9e0ea] bg-white text-[#4d5a75] shadow-[0_18px_32px_-24px_rgba(11,30,63,0.35)] transition hover:text-[#2d67b1] xl:inline-flex"
+          aria-label="Previous project group"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M15 5L8 12L15 19" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        <button
+          type="button"
+          className="landmark-next absolute right-0 top-[34%] z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full border border-[#d9e0ea] bg-white text-[#4d5a75] shadow-[0_18px_32px_-24px_rgba(11,30,63,0.35)] transition hover:text-[#2d67b1] xl:inline-flex"
+          aria-label="Next project group"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        <Swiper
+          modules={[A11y, Autoplay, Navigation, Pagination]}
+          navigation={{
+            prevEl: ".landmark-prev",
+            nextEl: ".landmark-next",
+          }}
+          pagination={{
+            el: ".landmark-pagination",
+            clickable: true,
+          }}
           slidesPerView={1}
           slidesPerGroup={1}
-          breakpoints={{ 768: { slidesPerView: 2, slidesPerGroup: 2 }, 1024: { slidesPerView: VISIBLE, slidesPerGroup: VISIBLE } }}
-          pagination={{ clickable: true }}
-          autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          aria-label="Iconic projects carousel"
+          spaceBetween={24}
+          speed={650}
+          watchOverflow
+          observer
+          observeParents
+          breakpoints={{
+            768: { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 22 },
+            1280: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 24 },
+          }}
+          autoplay={{
+            delay: 4500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }}
+          aria-label="Flagship infrastructure projects carousel"
         >
-          {items.map((p) => (
-            <SwiperSlide key={p.slug}>
-              <article className="group flex h-full min-h-[520px] flex-col overflow-hidden rounded-2xl border border-[#e6eaf4] bg-white shadow-sm transition-shadow duration-300 hover:shadow-md md:min-h-[540px]">
-                <div className="relative h-64 w-full overflow-hidden">
-                  {p.image ? (
-                    <>
-                      <Image src={p.image} alt={p.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" unoptimized />
-                      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/55 to-transparent" />
-                      <span className="absolute bottom-3 left-3 inline-block rounded-full bg-[#FF6B00] px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-white shadow">{p.tag}</span>
-                    </>
-                  ) : (
-                    <div className="h-full w-full bg-gray-100" />
-                  )}
+          {projects.map((project) => (
+            <SwiperSlide key={project.name} className="!h-auto py-1">
+              <article className="flex h-full flex-col rounded-[20px] border border-[#dde4ef] bg-white p-5 shadow-[0_22px_40px_-28px_rgba(11,30,63,0.25)]">
+                <div className="relative h-[195px] overflow-hidden rounded-[10px] sm:h-[205px]">
+                  <Image
+                    src={project.image}
+                    alt={project.name}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                  <div className="absolute bottom-3 right-3 rounded-full bg-[#2d67b1] px-4 py-2 text-[15px] font-semibold text-white shadow-[0_14px_24px_-18px_rgba(45,103,177,0.9)]">
+                    {project.value}
+                  </div>
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <div className="min-h-[92px] md:min-h-[100px]">
-                    <h3 className="text-[18px] font-semibold text-[#0F2A44]">{p.name}</h3>
-                    <p className="mt-2 flex items-center gap-2 text-sm text-gray-600">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-[#0F2A44]"><path d="M12 21s7-5.2 7-11a7 7 0 10-14 0c0 5.8 7 11 7 11z" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" strokeWidth="1.6"/></svg>
-                      {p.location}
+
+                <div className="flex flex-1 flex-col px-1 pt-6">
+                  <h3 className="min-h-[82px] text-center text-[23px] font-semibold leading-[1.25] text-black">
+                    {project.name}
+                  </h3>
+                  <div className="mx-auto mt-4 h-px w-full bg-[#e3e8f1]" />
+                  <p className="mt-4 min-h-[104px] text-center text-[17px] leading-8 text-[#55627c]">
+                    {project.overview}
+                  </p>
+                  <div className="mt-auto rounded-[6px] bg-[#edf4ff] px-4 py-4">
+                    <p className="text-[16px] leading-8 text-[#2d67b1]">
+                      <span className="font-semibold">Impact:</span> {project.impact}
                     </p>
                   </div>
-                  <p className="mt-3 text-2xl font-bold text-[#0F2A44]">{p.value ?? "—"}</p>
-                  {/* Status text (no color chip) */}
-                  <div className="mt-2 text-[12px] font-semibold text-[#0F2A44]">On-Going</div>
-                  <div className="flex-1" />
-                  <Link href={`/projects/${p.slug}`} className="mt-2 mb-[38px] inline-flex items-center rounded-full bg-[#FF6B00] px-4 py-2 text-sm font-semibold text-white shadow hover:bg-[#ff8f3d]">View Project <span aria-hidden className="ml-1">›</span></Link>
                 </div>
               </article>
             </SwiperSlide>
           ))}
-          </Swiper>
+        </Swiper>
 
-          {/* Using default Swiper navigation; styled in globals.css */}
+        <div className="mt-7 flex items-center justify-center gap-4 xl:hidden">
+          <button
+            type="button"
+            className="landmark-prev inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d9e0ea] bg-white text-[#4d5a75] transition hover:text-[#2d67b1]"
+            aria-label="Previous project group"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M15 5L8 12L15 19" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            className="landmark-next inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d9e0ea] bg-white text-[#4d5a75] transition hover:text-[#2d67b1]"
+            aria-label="Next project group"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M9 5L16 12L9 19" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
         </div>
+
+        <div className="landmark-pagination !static !mt-8 text-center" />
       </div>
-    </section>
+    </motion.section>
   );
 }

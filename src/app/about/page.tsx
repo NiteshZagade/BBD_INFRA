@@ -16,11 +16,36 @@ const stats: Stat[] = [
 // pillars removed per request
 
 const timeline = [
-  { year: "2014", title: "Founded with vision", description: "Balaji Builders & Developers begins operations in Dongaon, delivering village pathways, civic upgrades, and water supply works across rural Maharashtra." },
-  { year: "2017", title: "Government empanelment", description: "Secured the first Maharashtra Jeevan Pradhikaran mandate, expanded to 50+ experts, and formalised ISO-compliant QA/QC systems." },
-  { year: "2020", title: "Urban & EPC expansion", description: "Entered EPC Mode 32 highways, RCC corridor projects, and landmark bridges using GPS-guided machinery and BIM-enabled coordination." },
-  { year: "2024", title: "Recognised performance", description: "Completed ₹500+ Cr worth of projects with awards from MJP, PWD, and municipal councils for on-time delivery and safety excellence." },
-  { year: "2025", title: "BBD Infra Pvt. Ltd.", description: "Merged the legacy entity into BBD Infra; launched Atlas™ command centre, strategic national JVs, and scaled to ₹800+ Cr work in hand." },
+  {
+    year: "2014",
+    title: "Founded with Vision",
+    description:
+      "Balaji Builders & Developers began operations in Dongaon, Maharashtra, focusing on rural roads, village pathways, drainage systems, and water supply works. Through disciplined execution and strong local coordination, the company quickly earned trust for quality and timely delivery.",
+  },
+  {
+    year: "2017",
+    title: "Government Empanelment",
+    description:
+      "The company secured empanelment with Maharashtra Jeevan Pradhikaran (MJP), expanding its team and formalising ISO aligned QA/QC systems. It delivered multi village water supply schemes and strengthened its position as a reliable government infrastructure partner.",
+  },
+  {
+    year: "2020",
+    title: "Urban & EPC Expansion",
+    description:
+      "Expanding into EPC mode infrastructure, the company undertook highways, RCC corridors, and bridge projects. With GPS guided machinery and structured project management systems, it scaled operations into complex urban developments.",
+  },
+  {
+    year: "2022",
+    title: "Recognised Performance",
+    description:
+      "Surpassing ₹500+ Cr in completed projects, the company earned recognition from MJP, PWD, and municipal authorities for timely execution, safety standards, and quality delivery.",
+  },
+  {
+    year: "2024",
+    title: "BBD Infra Pvt. Ltd",
+    description:
+      "The legacy entity transitioned into BBD Infra Pvt. Ltd., introducing the Atlas™ Command Centre, forming strategic JVs, and scaling to ₹800+ Cr work in hand, marking its evolution into a technology driven national infrastructure company.",
+  },
 ];
 
 const fadeUp = { initial: { opacity: 0, y: 32 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 }, transition: { duration: 0.55, ease: "easeOut" } };
@@ -158,7 +183,10 @@ export default function AboutPage() {
                 return (
                   <motion.div key={item.year} initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.6, ease: "easeOut" }} className={`flex flex-col gap-6 sm:gap-10 ${isEven ? "sm:flex-row" : "sm:flex-row-reverse"} sm:items-center`}>
                     <div className="flex-1">
-                      <article className="text-sm text-[#405170]"><h3 className="text-xl font-semibold text-[#0b1e3f]">{item.title}</h3><p className="mt-3">{item.description}</p></article>
+                      <article className="text-sm text-[#405170]">
+                        <h3 className="text-xl font-semibold text-[#0b1e3f] text-balance">{item.title}</h3>
+                        <p className="mt-3 leading-relaxed text-pretty">{item.description}</p>
+                      </article>
                     </div>
                     <div className="relative flex flex-col items-center">
                       <div className="hidden h-8 w-[2px] bg-gradient-to-b from-[var(--bbd-primary)] to-transparent sm:block" aria-hidden />
