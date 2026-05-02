@@ -1,72 +1,134 @@
 @import "tailwindcss";
 
 :root {
-  --background: #EDEDED;
-  --foreground: #0b1e3f;
-  --bbd-primary: #0b3d91;
-  --bbd-primary-soft: #1d57c2;
-  --bbd-accent: #ff6b00;
-  --bbd-accent-soft: #ff8f3d;
-  --bbd-muted: #e3eaf6;
+  --background: #FAFBFD;
+  --foreground: #0F1F3D;
+
+  /* New design tokens */
+  --bbd-navy:  #08102B;
+  --bbd-navy2: #0D1A40;
+  --bbd-navy3: #132055;
+  --bbd-blue:  #1B4FD8;
+  --bbd-blue2: #2563EB;
+  --bbd-sky:   #3B82F6;
+  --bbd-gold:  #C9960C;
+  --bbd-gold2: #F59E0B;
+  --bbd-gold-pale: #FEF3C7;
+  --bbd-gray:  #F1F4FA;
+  --bbd-muted: #6B7C99;
+  --bbd-text:  #0F1F3D;
+
+  /* Legacy aliases (used by existing components) */
+  --bbd-primary:      #08102B;
+  --bbd-primary-soft: #1B4FD8;
+  --bbd-accent:       #C9960C;
+  --bbd-accent-soft:  #F59E0B;
+  --bbd-muted-old:    #e3eaf6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--bbd-primary);
-  --color-primary-soft: var(--bbd-primary-soft);
-  --color-accent: var(--bbd-accent);
-  --color-accent-soft: var(--bbd-accent-soft);
-  --font-sans: var(--font-geist-sans);
+  --color-background:   var(--background);
+  --color-foreground:   var(--foreground);
+  --color-primary:      var(--bbd-navy);
+  --color-primary-soft: var(--bbd-blue);
+  --color-accent:       var(--bbd-gold);
+  --color-accent-soft:  var(--bbd-gold2);
+  --font-sans: var(--font-dm-sans);
+  --font-serif: var(--font-cormorant);
   --font-mono: var(--font-geist-mono);
 }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bbd-navy); }
+::-webkit-scrollbar-thumb { background: var(--bbd-gold); }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-}
-
-a {
-  color: inherit;
+  font-family: var(--font-sans), 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 ::selection {
-  background: rgba(255, 107, 0, 0.32);
+  background: rgba(201, 150, 12, 0.28);
   color: #061940;
 }
 
-@keyframes road-flow {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+/* ── Hero grid overlay ── */
+.hero-grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,150,12,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,150,12,.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  pointer-events: none;
 }
 
-.animate-road {
-  animation: road-flow 12s linear infinite;
+/* ── Scroll hint ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+@keyframes pulse-line {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+.scroll-hint {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 1s 1.5s forwards;
+}
+.scroll-hint span {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--bbd-muted);
+}
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(var(--bbd-gold2), transparent);
+  animation: pulse-line 2s infinite;
 }
 
-/* Typewriter caret */
+/* ── Typewriter caret ── */
 @keyframes caret-blink {
   0%, 40% { opacity: 1; }
   50%, 100% { opacity: 0; }
 }
-
 .type-caret {
   display: inline-block;
-  width: 1px;
-  height: 1em;
-  background: currentColor;
-  margin-left: 2px;
+  width: 2px;
+  height: 0.85em;
+  background: var(--bbd-gold2);
+  margin-left: 3px;
   vertical-align: -0.1em;
   animation: caret-blink 1s step-end infinite;
 }
 
-/* Swiper navigation — custom white circular buttons */
+/* ── Reveal animation ── */
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal { animation: revealUp 0.7s ease forwards; }
+
+/* ── Road flow (kept for any legacy usage) ── */
+@keyframes road-flow {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-road { animation: road-flow 12s linear infinite; }
+
+/* ── Swiper navigation ── */
 .swiper-button-prev, .swiper-button-next {
   color: #0B1E3F;
   background: #fff;
@@ -81,8 +143,98 @@ a {
   font-weight: 700;
 }
 .swiper-button-disabled { opacity: 0.35; }
+.swiper-pagination { bottom: 10px !important; }
 
-/* Move pagination bullets 1cm down (~38px) */
-.swiper-pagination {
-  bottom: 10px !important;
+/* ══════════════════════════════════════════════════
+   SCROLL REVEAL ANIMATIONS
+   Triggered by adding .is-visible via IntersectionObserver
+   or used directly with Framer Motion
+══════════════════════════════════════════════════ */
+
+@keyframes revealLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes revealRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes revealScale {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.reveal       { opacity: 0; }
+.reveal-left  { opacity: 0; }
+.reveal-right { opacity: 0; }
+.reveal-scale { opacity: 0; }
+
+.reveal.is-visible       { animation: revealUp   0.7s cubic-bezier(.4,0,.2,1) forwards; }
+.reveal-left.is-visible  { animation: revealLeft 0.7s cubic-bezier(.4,0,.2,1) forwards; }
+.reveal-right.is-visible { animation: revealRight 0.7s cubic-bezier(.4,0,.2,1) forwards; }
+.reveal-scale.is-visible { animation: revealScale 0.7s cubic-bezier(.4,0,.2,1) forwards; }
+
+/* Stagger delays for child items */
+.reveal-delay-1 { animation-delay: 0.1s !important; }
+.reveal-delay-2 { animation-delay: 0.2s !important; }
+.reveal-delay-3 { animation-delay: 0.3s !important; }
+.reveal-delay-4 { animation-delay: 0.4s !important; }
+.reveal-delay-5 { animation-delay: 0.5s !important; }
+
+/* ── Eyebrow label gold decorator ── */
+.eyebrow-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow-label::before {
+  content: "";
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--bbd-gold);
+  flex-shrink: 0;
+}
+
+/* ── Gold underline hover (Partners / footer links) ── */
+.gold-hover-underline {
+  position: relative;
+  display: inline-block;
+}
+.gold-hover-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--bbd-gold2);
+  transition: width 0.3s cubic-bezier(.4,0,.2,1);
+}
+.gold-hover-underline:hover::after { width: 60%; }
+
+/* ── Lift hover (value / pillar cards) ── */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s cubic-bezier(.4,0,.2,1);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px -20px rgba(11,30,63,0.3);
+}
+
+/* ── Button lift ── */
+a, button { transition-property: color, background-color, border-color, transform, box-shadow, opacity; transition-duration: 200ms; transition-timing-function: cubic-bezier(.4,0,.2,1); }
+
+/* ── Contact form input focus ring ── */
+.form-input:focus {
+  outline: none;
+  border-color: var(--bbd-gold);
+  box-shadow: 0 0 0 3px rgba(201,150,12,0.18);
+}
+
+/* ── Navbar glass blur (already sticky, enhance with blur) ── */
+header {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }

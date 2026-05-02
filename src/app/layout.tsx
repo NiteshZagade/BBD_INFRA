@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, DM_Sans, Cormorant_Garamond } from "next/font/google";
 import MobileNav from "../components/MobileNav";
+import NavDesktop from "../components/NavDesktop";
 import type { NavItem } from "../components/MobileNav";
 import Providers from "./providers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -18,20 +26,12 @@ const geistMono = Geist_Mono({
 });
 
 const navLinks: NavItem[] = [
-  { label: "HOME", href: "/" },
-  {
-    label: "COMPANY",
-    children: [
-      { label: "About", href: "/about" },
-      { label: "Vision", href: "/vision" },
-      { label: "Leadership", href: "/leadership" },
-      { label: "Finance", href: "/finance" },
-    ],
-  },
-  { label: "PLANT & MACHINERY", href: "/plant-machinery" },
-  { label: "PROJECTS", href: "/projects" },
-  { label: "CAREER", href: "/careers" },
-  { label: "CONTACT", href: "/contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Plants & Machinery", href: "/plant-machinery" },
+  { label: "Contact Us", href: "/contact" },
+  { label: "Financials", href: "/financials" },
 ];
 
 export const metadata: Metadata = {
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description:
     "BBD Infra delivers highways, water networks, bridges, and urban infrastructure with national-grade engineering and technology.",
   icons: {
-    icon: "/logo-bbd.svg",
+    icon: "/images/bbd_infra_blue.png",
   },
 };
 
@@ -51,166 +51,193 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-
-className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)] antialiased`}
+        className={`${dmSans.variable} ${cormorant.variable} ${geistMono.variable} min-h-screen bg-[var(--color-background)] text-[var(--color-foreground)] antialiased`}
       >
         <Providers>
-          <header className="h-18 border-b border-[#273a57] bg-[#1A418C]">
-            <div className="mx-auto flex h-full max-w-7xl items-center gap-6 px-5 sm:px-10">
-              <Link href="/" className="flex items-center gap-3 mt-7">
+          {/* ── Navbar ── */}
+          <header className="sticky top-0 z-50 border-b border-white/10" style={{ backgroundColor: "rgba(8,16,43,0.98)", backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)", transition: "all .3s" }}>
+            <div className="mx-auto flex h-[70px] max-w-7xl items-center justify-between px-5 sm:px-10 lg:px-[60px]">
+
+              {/* Logo */}
+              <Link href="/" className="flex shrink-0 items-center no-underline">
                 <Image
-                  src="/images/resized.png"
+                  src="/images/bbd_infra_blue.png"
                   alt="BBD Infra logo"
-                  width={260}
-                  height={64}
-                  className="h-32 w-auto object-contain"
+                  width={160}
+                  height={160}
+                  className="h-[110px] w-auto object-contain"
+                  style={{ filter: "brightness(1.6) saturate(1.2) drop-shadow(0 0 12px rgba(80,140,255,0.6))" }}
                 />
               </Link>
-              <nav className="ml-auto hidden items-center justify-end gap-6 text-[12px] font-semibold tracking-[0.15em] text-white lg:flex">
-                {navLinks.map((item) => (
-                  <div key={item.label} className="group relative">
-                    {item.href ? (
-                      <Link href={item.href} className="transition hover:text-[#ffbe8a]">
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <span className="cursor-default select-none transition group-hover:text-[#ffbe8a]">{item.label}</span>
-                    )}
 
-                    {item.label === "COMPANY" && item.children && (
-                      <div className="pointer-events-none absolute left-1/2 top-full z-50 w-80 -translate-x-1/2 pt-4 opacity-0 transition group-hover:pointer-events-auto group-hover:opacity-100">
-                        <div className="rounded-md border border-[#22345b] bg-[#0f1d33]/95 p-6 text-white shadow-[0_24px_60px_-30px_rgba(0,0,0,0.6)]">
-                          {(() => {
-                            const first = item.children.slice(0, 4);
-                            const second = item.children.slice(4);
-                            return (
-                              <div className={`grid gap-6 ${second.length ? "sm:grid-cols-2" : "sm:grid-cols-1"}`}>
-                                <ul className="space-y-2">
-                                  {first.map((child) => (
-                                    <li key={child.href} className="border-b border-white/10 pb-2 last:border-0">
-                                      <Link href={child.href} className="flex items-center justify-between px-3 py-2 hover:text-[#ffbe8a]">
-                                        <span>{child.label}</span>
-                                        <span aria-hidden>→</span>
-                                      </Link>
-                                    </li>
-                                  ))}
-                                </ul>
-                                {second.length ? (
-                                  <ul className="space-y-2">
-                                    {second.map((child) => (
-                                      <li key={child.href} className="border-b border-white/10 pb-2 last:border-0">
-                                        <Link href={child.href} className="flex items-center justify-between px-3 py-2 hover:text-[#ffbe8a]">
-                                          <span>{child.label}</span>
-                                          <span aria-hidden>→</span>
-                                        </Link>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                ) : null}
-                              </div>
-                            );
-                          })()}
-                        </div>
-                      </div>
-                    )}
+              {/* Desktop nav — client component for active state */}
+              <NavDesktop items={navLinks} />
 
-                    {item.label !== "COMPANY" && item.children && (
-                      <div className="invisible absolute left-0 top-full z-50 w-72 rounded-md border border-[#e3e9fb] bg-white p-2 text-[#0b1e3f] opacity-0 shadow-[0_12px_28px_-18px_rgba(11,61,145,0.35)] transition group-hover:visible group-hover:opacity-100">
-                        <ul className="text-[12px] font-medium tracking-normal">
-                          {item.children.map((child) => (
-                            <li key={child.href}>
-                              <Link href={child.href} className="block rounded px-3 py-2 text-[#0b1e3f]/80 hover:bg-[#f6f8ff] hover:text-[var(--bbd-primary)]">
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </nav>
-              <MobileNav items={navLinks} />
+              {/* CTA + Mobile hamburger */}
+              <div className="flex items-center gap-4">
+                <Link
+                  href="/contact"
+                  className="hidden rounded-[2px] bg-[#D4A437] px-6 py-[10px] text-[12px] font-semibold uppercase tracking-[0.1em] text-[#171c3d] transition hover:bg-[#DEAF47] hover:-translate-y-px lg:inline-flex"
+                >
+                  Start a Project
+                </Link>
+                <MobileNav items={navLinks} />
+              </div>
+
             </div>
           </header>
+
+          {/* Scroll reveal observer */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');io.unobserve(e.target);}});},{threshold:0.15});document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(function(el){io.observe(el);});document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(function(el){io.observe(el);});});})();`,
+            }}
+          />
+
           <main>{children}</main>
-          <footer className="border-t border-[#273a57] bg-[#1A418C] text-white">
-            <div className="mx-auto grid max-w-7xl items-start gap-8 px-5 py-10 sm:grid-cols-2 md:grid-cols-4 sm:px-10">
-              {/* Brand and blurb */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <Image src="/images/resized.png" alt="BBD Infra logo" width={260} height={72} className="h-20 w-auto" />
-                </div>
-                <p className="text-sm/6 text-white/85">
-                  BBD Infra Pvt. Ltd. (formerly Balaji Builders & Developers) delivering reliable water networks,
-                  resilient roads, bridges and urban infrastructure with disciplined project controls and a people first approach.
-                </p>
-                <p className="mt-1 text-xs text-white/85">
-                  <strong>GSTIN - 27AANCB1799H1Z6</strong>
-                </p>
-                <div className="flex items-center gap-3 pt-2">
-                  <a aria-label="Facebook" href="#" className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">f</a>
-                  <a aria-label="Instagram" href="#" className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">ig</a>
-                  <a aria-label="LinkedIn" href="#" className="grid h-8 w-8 place-items-center rounded-full bg-white/10 hover:bg-white/20">in</a>
-                </div>
-              </div>
 
-              {/* Quick links */}
-              <div>
-                <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-white/70">Quick Links</p>
-                <ul className="space-y-2 text-sm/6 text-white/85">
-                  <li><Link href="/about" className="hover:text-white">About</Link></li>
-                  <li><Link href="/plant-machinery" className="hover:text-white">Plant &amp; Machinery</Link></li>
-                  <li><Link href="/projects" className="hover:text-white">Projects</Link></li>
-                  <li><Link href="/careers" className="hover:text-white">Careers</Link></li>
-                  <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-                </ul>
-              </div>
+          {/* ── Footer ── */}
+          <footer className="bg-[#05091E] text-white">
+<div className="mx-auto max-w-7xl px-5 pt-14 pb-10 sm:px-10">
+              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
-              {/* Our projects (domains) */}
-              <div>
-                <p className="mb-3 text-sm font-bold uppercase tracking-[0.25em] text-white/70">Our Projects</p>
-                <ul className="space-y-2 text-sm/6 text-white/85">
-                  <li><Link href="/projects/categories/water-supply" className="hover:text-white">Water Supply Network</Link></li>
-                  <li><Link href="/projects/categories/roads-highways" className="hover:text-white">Road &amp; Highways</Link></li>
-                  <li><Link href="/projects/categories/urban-infrastructure" className="hover:text-white">Urban Infrastructure</Link></li>
-                  <li><Link href="/projects/categories/renewable-energy" className="hover:text-white">Renewable Energy</Link></li>
-                </ul>
-              </div>
-
-              {/* Addresses */}
-              <div className="space-y-4 text-sm/6 text-white/85">
-                <p className="mb-1 text-sm font-bold uppercase tracking-[0.25em] text-white/70">Addresses</p>
-                <div>
-                  <p className="font-semibold">Corporate Office</p>
-                  <p>MHADA Colony, DP Road, Mehkar</p>
-                  <p>Buldhana – 443301, Maharashtra</p>
-                </div>
-                <div>
-                  <p className="font-semibold">Registered Office</p>
-                  <p>Ward No. 03, Saoji Galli, Dongaon</p>
-                  <p>Tq. Mehkar, Dist. Buldhana, Maharashtra</p>
-                  {/* ISO 9001 badge (moved below Registered Office) */}
-                  <div className="mt-3 flex items-center gap-3">
-                    <Image
-                      src="/images/iso-9001-2015-certification.png"
-                      alt="ISO 9001:2015 Certification"
-                      width={56}
-                      height={56}
-                      className="h-14 w-14 object-contain"
-                    />
-                    <div className="leading-tight">
-                      <p className="text-sm font-semibold text-white">ISO 9001:2015 Certified</p>
-                      <p className="text-xs text-white/80">Quality Management System</p>
-                    </div>
+                {/* Col 1 — Brand */}
+                <div className="space-y-3 lg:col-span-1">
+                  <Image
+                    src="/images/bbd_infra_blue.png"
+                    alt="BBD Infra logo"
+                    width={220}
+                    height={220}
+                    className="h-24 w-auto object-contain"
+                    style={{ filter: "brightness(1.5) saturate(1.1)" }}
+                  />
+                  <p className="text-[13px] leading-[1.8] text-white/65">
+                    BBD Infra Pvt. Ltd. (formerly Balaji Builders &amp; Developers) — delivering water networks,
+                    roads, bridges, and urban infrastructure across Maharashtra.
+                  </p>
+                  <p className="text-[11px] font-semibold tracking-wide text-white/50">
+                    GSTIN: <span className="text-white/70">27AANCB1799H1Z6</span>
+                  </p>
+                  <div className="flex items-center gap-2.5 pt-1">
+                    <a aria-label="Facebook" href="#"
+                      className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/5 text-[13px] font-semibold hover:border-[#C9960C]/50 hover:bg-[#C9960C]/10 hover:text-[#F59E0B] transition">
+                      f
+                    </a>
+                    <a aria-label="Instagram" href="#"
+                      className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/5 text-[11px] font-semibold hover:border-[#C9960C]/50 hover:bg-[#C9960C]/10 hover:text-[#F59E0B] transition">
+                      ig
+                    </a>
+                    <a aria-label="LinkedIn" href="#"
+                      className="grid h-8 w-8 place-items-center rounded-full border border-white/10 bg-white/5 text-[11px] font-semibold hover:border-[#C9960C]/50 hover:bg-[#C9960C]/10 hover:text-[#F59E0B] transition">
+                      in
+                    </a>
                   </div>
                 </div>
+
+                {/* Col 2 — Quick Links */}
+                <div>
+                  <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C9960C]">Quick Links</p>
+                  <ul className="space-y-3">
+                    {[
+                      { label: "Home",              href: "/" },
+                      { label: "About Us",           href: "/about" },
+                      { label: "Projects",           href: "/projects" },
+                      { label: "Plant & Machinery",  href: "/plant-machinery" },
+                      { label: "Financials",         href: "/financials" },
+                      { label: "Careers",            href: "/careers" },
+                      { label: "Contact Us",         href: "/contact" },
+                    ].map(({ label, href }) => (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          className="group flex items-center gap-2 text-[13px] text-white/65 transition hover:text-[#F59E0B]"
+                        >
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Col 3 — Our Projects */}
+                <div>
+                  <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C9960C]">Our Projects</p>
+                  <ul className="space-y-3">
+                    {[
+                      { label: "Water Supply Network",  href: "/projects?filter=Water+Supply" },
+                      { label: "Roads & Highways",      href: "/projects?filter=Roads+%26+Bridges" },
+                      { label: "Urban Infrastructure",  href: "/projects?filter=Urban+Development" },
+                      { label: "Renewable Energy",      href: "/projects?filter=Renewable+Energy" },
+                    ].map(({ label, href }) => (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          className="group flex items-center gap-2 text-[13px] text-white/65 transition hover:text-[#F59E0B]"
+                        >
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-8 border-t border-white/5 pt-6">
+                    <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C9960C]">Reach Us</p>
+                    <a
+                      href="mailto:info@bbdinfra.in"
+                      className="flex items-center gap-2 text-[13px] text-white/65 hover:text-[#F59E0B] transition"
+                    >
+                      <svg width="14" height="11" viewBox="0 0 14 11" fill="none" className="shrink-0 opacity-60">
+                        <path d="M1 1h12v9H1V1Zm0 0 6 5 6-5" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+                      </svg>
+                      info@bbdinfra.in
+                    </a>
+                  </div>
+                </div>
+
+                {/* Col 4 — Certifications */}
+                <div>
+                  <p className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-[#C9960C]">Certifications</p>
+
+                  <div className="rounded-[4px] border border-white/8 bg-white/[0.03] p-5">
+                    <div className="flex items-start gap-4">
+                      <Image
+                        src="/images/iso-9001-2015-certification.png"
+                        alt="ISO 9001:2015 Certification"
+                        width={56}
+                        height={56}
+                        className="h-14 w-14 shrink-0 object-contain"
+                      />
+                      <div>
+                        <p className="text-[13px] font-semibold text-white">ISO 9001:2015</p>
+                        <p className="mt-0.5 text-[11px] text-white/55">Quality Management System</p>
+                        <p className="mt-2 text-[11px] leading-[1.6] text-white/40">
+                          Certified for design, construction &amp; management of infrastructure projects.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 rounded-[4px] border border-[#C9960C]/15 bg-[#C9960C]/5 px-5 py-4">
+                    <p className="text-[12px] font-semibold text-white/80">Start a Project</p>
+                    <p className="mt-1 text-[11px] text-white/45">Infrastructure programs, large or small.</p>
+                    <Link
+                      href="/contact"
+                      className="mt-3 inline-block rounded-[2px] bg-[#C9960C] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#08102B] transition hover:bg-[#F59E0B]"
+                    >
+                      Get in Touch →
+                    </Link>
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            <div className="border-t border-white/20 bg-[#1A418C] py-6 text-center text-xs text-white/80">
-              © {new Date().getFullYear()} BBD Infra Pvt. Ltd. (Formerly Balaji Builders &amp; Developers). All rights reserved.
-              <span className="ml-2 text-white/70">Powered by: Nitesh Zagade</span>
+            {/* Bottom bar */}
+            <div className="border-t border-white/[0.06] bg-[#05091E]">
+              <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-5 py-5 text-[11px] text-white/40 sm:flex-row sm:px-10">
+                <span>© {new Date().getFullYear()} BBD Infra Pvt. Ltd. (Formerly Balaji Builders &amp; Developers). All rights reserved.</span>
+                <span className="text-white/30">Designed &amp; Developed by Nitesh Zagade</span>
+              </div>
             </div>
           </footer>
         </Providers>
