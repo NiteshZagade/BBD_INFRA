@@ -621,12 +621,12 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-10">
           <motion.div {...fadeUp}>
             <h2
-              className="mb-4 text-[clamp(18px,2.6vw,34px)] font-bold text-[#08102B] whitespace-nowrap"
+              className="mb-4 text-[clamp(18px,2.6vw,34px)] font-bold text-[#08102B]"
               style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}
             >
               Planning Your Next Infrastructure Project?
             </h2>
-            <p className="mb-9 text-[clamp(11px,1.15vw,15px)] font-light text-[#0D1A40] whitespace-nowrap">
+            <p className="mb-9 text-[clamp(11px,1.15vw,15px)] font-light text-[#0D1A40]">
               Connect with a team focused on structured execution, compliance, and reliable delivery at every stage.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
