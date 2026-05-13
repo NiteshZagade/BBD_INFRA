@@ -78,7 +78,7 @@ const projects: ProjectCard[] = [
     categoryColor: "#16a34a",
     region: "Satara District",
     status: "Active",
-    overview: "EPC execution of road improvements along SH-139 (Poladpur–Mahabaleshwar–Wai) and SH-119 (Pargaon–Surur), covering key stretches in Tal. Wai, Dist. Satara for MSIDC.",
+    overview: "",
     impact: "Enhanced connectivity across Satara district with improved road safety, reduced travel time, and better access to Mahabaleshwar and surrounding talukas.",
     image: "/images/roads-highway.jpg",
     overlayColor: "rgba(10,30,10,0.50)",

@@ -65,22 +65,17 @@ function ProjectCard({ project }: { project: Project }) {
       transition={{ duration: 0.4, ease: "easeOut" }}
       className="group overflow-hidden rounded-[3px] border border-[#DDE3EF] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_-12px_rgba(8,16,43,0.18)]"
     >
-      {/* Colored top block (no image) */}
-      <div
-        className="relative flex h-[180px] w-full items-center justify-center"
-        style={{ backgroundColor: project.bgColor }}
-      >
-        {/* Subtle grid pattern overlay */}
-        <div className="absolute inset-0 opacity-[0.06]"
-          style={{ backgroundImage: "linear-gradient(rgba(255,255,255,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.4) 1px,transparent 1px)", backgroundSize: "32px 32px" }}
+      {/* Project image */}
+      <div className="relative h-[180px] w-full overflow-hidden">
+        <Image
+          src="/images/bbd_infra_sketch_4_construction_site.png"
+          alt={project.name}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          unoptimized
         />
-        {/* BBD monogram */}
-        <span
-          className="select-none text-[52px] font-bold tracking-widest text-white/10"
-          style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',serif" }}
-        >
-          BBD
-        </span>
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-[#08102B]/40" />
         {/* Category badge */}
         <div className="absolute left-3 top-3">
           <span
