@@ -21,8 +21,7 @@ const projects: Project[] = [
   // Water Supply
   { name: "Wani AMRUT 2.0 Water Supply Scheme", value: "₹140.62 Cr", category: "Water Supply", badge: "WATER", location: "Yavatmal, Maharashtra", status: "Active", bgColor: "#0D1A40" },
   { name: "Pandharkawda Water Supply Scheme", value: "₹68.44 Cr", category: "Water Supply", badge: "WATER", location: "Yavatmal, Maharashtra", status: "Completed", bgColor: "#0D1A40" },
-  { name: "Daund Water Supply – Part 1 (AMRUT 2.0)", value: "₹95 Cr", category: "Water Supply", badge: "WATER", location: "Pune, Maharashtra", status: "Active", bgColor: "#0D1A40" },
-  { name: "Daund Water Supply – Part 2 (AMRUT 2.0)", value: "₹60 Cr", category: "Water Supply", badge: "WATER", location: "Pune, Maharashtra", status: "Active", bgColor: "#0D1A40" },
+{ name: "Daund Water Supply – Part 2 (AMRUT 2.0)", value: "₹60 Cr", category: "Water Supply", badge: "WATER", location: "Pune, Maharashtra", status: "Active", bgColor: "#0D1A40" },
   { name: "Hirabambai Regional Water Supply Scheme", value: "₹38 Cr", category: "Water Supply", badge: "WATER", location: "Amravati, Maharashtra", status: "Completed", bgColor: "#0D1A40" },
   { name: "Yelgaon Regional Water Supply Scheme", value: "₹22 Cr", category: "Water Supply", badge: "WATER", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#0D1A40" },
   // Roads & Bridges
@@ -30,13 +29,19 @@ const projects: Project[] = [
   { name: "Amdapur–Janephal–Vishvi CC Road", value: "₹55.50 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Buldhana Region", status: "Completed", bgColor: "#1C2B1A" },
   { name: "Painganga River Bridge", value: "₹25 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Chandrapur Region", status: "Completed", bgColor: "#1C2B1A" },
   { name: "Urban Development Roads – Mehkar", value: "₹50 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1C2B1A" },
+  { name: "EPC Improvements to Poladpur–Mahabaleshwar–Wai–Bhadale–Dahiwadi Road SH-139 & Pargaon Yawat Saswad Kapurhol–Bhor–Mandhardev–Wai–Surur Road SH-119, Tal. Wai Dist. Satara", value: "₹300 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Satara, Maharashtra", status: "Active", bgColor: "#1C2B1A" },
   // Urban Development
   { name: "Lendi Talao Rejuvenation (AMRUT 2.0)", value: "₹14.31 Cr", category: "Urban Development", badge: "URBAN", location: "Lonar, Buldhana", status: "Completed", bgColor: "#1A1430" },
-  { name: "CC Road & Drain – Indapur MSJNM", value: "₹104.90 Cr", category: "Urban Development", badge: "URBAN", location: "Pune District", status: "Completed", bgColor: "#1A1430" },
   { name: "Wainganga River Bank & Flood Control", value: "₹12 Cr", category: "Urban Development", badge: "URBAN", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1A1430" },
   { name: "Chhatrapati Shivaji Maharaj Udyan", value: "₹8 Cr", category: "Urban Development", badge: "URBAN", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1A1430" },
   { name: "Development of Healthy Streets in Shankarnagar and Dharampeth areas of Nagpur city as per Urban Street Design Guidelines", value: "₹25 Cr", category: "Urban Development", badge: "URBAN", location: "Nagpur, Maharashtra", status: "Active", bgColor: "#1A1430" },
+  { name: "Proposed Beautification & Development at Open Space in Front of Gomukh Dhar Lonar", value: "", category: "Urban Development", badge: "URBAN", location: "Lonar, Buldhana", status: "Completed", bgColor: "#1A1430" },
   // Renewable Energy
+  { name: "Providing & Erecting 100 Solar Mini High Mast Poles at Gram Panchayat Locations – Dist. Bhandara (Est. 1563/GND/2022-23)", value: "₹3.81 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Bhandara, Maharashtra", status: "Completed", bgColor: "#1A1200" },
+  { name: "Providing & Erecting 68 Solar Mini High Mast Poles at Gram Panchayat Locations – Dist. Bhandara (Est. 1565/BND/2022-23)", value: "₹2.59 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Bhandara, Maharashtra", status: "Completed", bgColor: "#1A1200" },
+  { name: "Providing & Erecting 46 Solar Mini High Mast Poles at Gram Panchayat Locations – Dist. Bhandara & Gondia (Est. 1564,1566/GND,BND/2022-23)", value: "₹1.75 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Bhandara & Gondia, Maharashtra", status: "Completed", bgColor: "#1A1200" },
+  { name: "Providing & Erecting 63 Solar Mini Highmast Poles at Nagar Panchayat Kalamb, Babhulgaon & Ralegaon (Est. 243/EE/YTL/2023-24)", value: "₹2.63 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Yavatmal, Maharashtra", status: "Completed", bgColor: "#1A1200" },
+  { name: "Providing & Erecting 48 Solar Mini Highmast Poles at Gram Panchayat Umerkhed & Mahagaon (Est. 235/EE/YTL/2023-24)", value: "₹2.00 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Yavatmal, Maharashtra", status: "Completed", bgColor: "#1A1200" },
   { name: "Solar Mini Highmast Poles – Gram Panchayats", value: "₹8 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Bhandara, Maharashtra", status: "Completed", bgColor: "#1A1200" },
   { name: "Solar Highmast Street Lighting – Wani", value: "₹6 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Yavatmal, Maharashtra", status: "Completed", bgColor: "#1A1200" },
   { name: "Solar Mini Highmast – 63 Units", value: "₹5 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Gondia, Maharashtra", status: "Completed", bgColor: "#1A1200" },

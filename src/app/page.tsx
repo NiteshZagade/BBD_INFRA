@@ -233,19 +233,8 @@ const clients = [
 export default function Home() {
   const { data } = useSiteData();
 
-  /* ── Refs for counter start triggers ── */
-  const numbersRef = useRef<HTMLDivElement>(null);
-  const numbersInView = useInView(numbersRef, { once: true, amount: 0.3 });
-
   const clientsRef = useRef<HTMLDivElement>(null);
   const clientsInView = useInView(clientsRef, { once: true, amount: 0.3 });
-
-  const keyNumbers = [
-    { value: 11, prefix: "", suffix: "+", label: "Years of Operation" },
-    { value: 800, prefix: "₹", suffix: "Cr+", label: "Work in Hand" },
-    { value: 62, prefix: "", suffix: "+", label: "Active Project Sites" },
-    { value: 200, prefix: "", suffix: "+", label: "Workforce" },
-  ];
 
   return (
     <>
@@ -353,7 +342,7 @@ export default function Home() {
                 <div className="col-span-2 h-px bg-[rgba(201,150,12,0.15)]" />
 
                 {([
-                  { prefix: "₹", value: 800,                   suffix: "Cr+", decimals: 0, label: "Work in Hand" },
+                  { prefix: "₹", value: 1000,                  suffix: "Cr+", decimals: 0, label: "Work in Hand" },
                   { prefix: "",  value: data.stats.workforce,   suffix: "+",   decimals: 0, label: "Workforce" },
                 ] as const).map((s, i) => (
                   <div key={s.label}>
@@ -375,43 +364,6 @@ export default function Home() {
         <div className="scroll-hint">
           <span>Scroll</span>
           <div className="scroll-line" />
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════
-          KEY NUMBERS — dark navy strip
-      ══════════════════════════════════════════════════ */}
-      <section className="bg-[#08102B] py-20" ref={numbersRef}>
-        <div className="mx-auto max-w-7xl px-5 sm:px-10">
-          <div
-            className="grid divide-x divide-[rgba(201,150,12,0.12)] sm:grid-cols-2 lg:grid-cols-4"
-            style={{ background: "rgba(201,150,12,0.04)", border: "1px solid rgba(201,150,12,0.12)" }}
-          >
-            {keyNumbers.map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="px-10 py-12 text-center"
-              >
-                <div
-                  className="flex items-baseline justify-center gap-1 text-[54px] font-bold leading-none text-[#F59E0B]"
-                >
-                  <AnimatedCounter
-                    value={item.value}
-                    prefix={item.prefix}
-                    start={numbersInView}
-                    delayMs={i * 100}
-                    className="text-[54px] font-bold leading-none text-[#F59E0B]"
-                  />
-                  <span className="text-[28px] text-[#F59E0B]">{item.suffix}</span>
-                </div>
-                <p className="mt-3 text-[12px] font-medium uppercase tracking-[0.12em] text-white/50">{item.label}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -443,7 +395,6 @@ export default function Home() {
                 variants={itemFade}
                 className="group cursor-default bg-[#FAFBFD] px-8 py-10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#08102B]"
               >
-                <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#C9960C]">{svc.num}</p>
                 <div className="mb-4">{svc.icon}</div>
                 <h3
                   className="mb-2.5 text-[20px] font-bold text-[#08102B] transition-colors duration-300 group-hover:text-white"

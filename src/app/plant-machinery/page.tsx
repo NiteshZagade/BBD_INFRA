@@ -34,6 +34,7 @@ const candidates = (slug: string) => [
   `/images/plants/${slug}.jpeg`,
   `/images/plants/${slug}.png`,
   `/images/plants/${slug}.webp`,
+  `/images/plants/${slug}.avif`,
   `/images/plant/${slug}.jpg`,
   `/images/plant/${slug}.jpeg`,
   `/images/plant/${slug}.png`,

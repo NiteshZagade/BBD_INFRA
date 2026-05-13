@@ -10,7 +10,7 @@ type SiteDataContextType = {
 };
 
 const SiteDataContext = createContext<SiteDataContextType | undefined>(undefined);
-const STORAGE_KEY = "bbd-infra-site-data";
+const STORAGE_KEY = "bbd-infra-site-data-v2";
 
 export function SiteDataProvider({ children }: { children: React.ReactNode }) {
   const [data, setData] = useState<SiteData>(() => {

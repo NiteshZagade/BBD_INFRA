@@ -19,7 +19,6 @@ const districts: DistrictPoint[] = [
   { key: "buldhana", name: "Buldhana", x: 32, y: 38, completed: "CC roads, beautification", value: "₹50+ Cr" },
   { key: "yavatmal", name: "Yavatmal", x: 56, y: 52, completed: "Wani 24x7 WSS, Pandharkawda WSS", value: "₹200+ Cr" },
   { key: "amaravati", name: "Amravati", x: 50, y: 34, completed: "Roads & Water", value: "₹40+ Cr" },
-  { key: "pune", name: "Pune (Indapur)", x: 20, y: 60, completed: "Indapur CC Roads", value: "₹100+ Cr" },
   { key: "lonar", name: "Lonar", x: 35, y: 45, completed: "Lendi Talao Rejuvenation", value: "₹14.31 Cr" },
 ];
 

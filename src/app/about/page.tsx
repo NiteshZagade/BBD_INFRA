@@ -7,13 +7,14 @@ import { AnimatedStat } from "@/components/AnimatedStat";
 
 const timeline = [
   { year: "2014",  title: "Founded in Dongaon",                    desc: "Started with small civil works in Dongaon village, laying the operational foundation with hands-on execution and local expertise." },
-  { year: "2016",  title: "Entered Government Infrastructure",      desc: "First public sector contracts secured — a milestone that validated the team's execution capability and compliance standards." },
+  { year: "2016",  title: "Entered Government Infrastructure",      desc: "First public sector contracts secured, a milestone that validated the team's execution capability and compliance standards." },
   { year: "2018",  title: "Expanded into Water & Road Projects",    desc: "Expanded into water supply and road infrastructure. Strengthened core engineering capabilities and project management systems." },
-  { year: "2020",  title: "Scaled to Multi-Site Execution",         desc: "Operations expanded across multiple simultaneous locations — proving the company's capacity for parallel, large-scale project delivery." },
+  { year: "2020",  title: "Scaled to Multi-Site Execution",         desc: "Operations expanded across multiple simultaneous locations, proving the company's capacity for parallel, large-scale project delivery." },
   { year: "2022",  title: "Strengthened Teams & Systems",           desc: "200+ skilled workforce. Structured operations with dedicated site management, equipment deployment, and quality control teams." },
-  { year: "2024",  title: "Moved into High-Value Projects",         desc: "Achieved ₹800+ Crores work in hand — a major milestone reflecting the trust earned from government agencies across Maharashtra." },
-  { year: "2025",  title: "Transitioned to BBD Infra Pvt. Ltd.",   desc: "Formally incorporated as BBD Infra Pvt. Ltd. — positioned for EPC-scale growth and national infrastructure programs." },
-  { year: "Today", title: "Executing Across Maharashtra & Pan India", desc: "62 active sites across water supply, roads, and urban development sectors. Expanding operations beyond Maharashtra to national scale." },
+  { year: "2024",  title: "Moved into High-Value Projects",         desc: "Achieved ₹800+ Crores work in hand, a major milestone reflecting the trust earned from government agencies across Maharashtra." },
+  { year: "2025",  title: "Diversified Across Sectors & Geographies", desc: "Expanded portfolio into Renewable Energy and Urban Development. Crossed 60+ simultaneous active sites, with operations strengthening beyond Maharashtra into national programs." },
+  { year: "2026",  title: "Transitioned to BBD Infra Pvt. Ltd.",   desc: "Balaji Builders and Developers formally transitioned to BBD Infra Pvt. Ltd., a strategic rebranding marking a new chapter of corporate-scale growth, EPC execution, and national infrastructure delivery." },
+  { year: "Today", title: "Executing Across Maharashtra & Pan India", desc: "62 active sites across water supply, roads, and urban development sectors. ₹1000+ Cr projects in hand. Expanding operations beyond Maharashtra to national scale." },
 ];
 
 const t: Transition = { duration: 0.55, ease: "easeOut" };
@@ -63,7 +64,7 @@ export default function AboutPage() {
               className="mb-10 max-w-xl space-y-4"
             >
               <p className="text-[15px] font-light leading-[1.85] text-white/65">
-                BBD Infra Pvt. Ltd. is a Maharashtra-based infrastructure company delivering public projects across water supply systems, road networks, and urban development. With multiple high-value projects underway, the company operates with a structured approach to planning, execution, and quality control enabling consistent delivery across diverse project environments.
+                BBD Infra Pvt. Ltd. (formerly known as Balaji Builders and Developers) is a Maharashtra-based infrastructure company delivering public projects across water supply systems, road networks, and urban development. With multiple high-value projects underway, the company operates with a structured approach to planning, execution, and quality control enabling consistent delivery across diverse project environments.
               </p>
             </motion.div>
 

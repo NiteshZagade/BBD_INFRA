@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   description:
     "BBD Infra delivers highways, water networks, bridges, and urban infrastructure with national-grade engineering and technology.",
   icons: {
-    icon: "/images/bbd_infra_blue.png",
+    icon: "/images/bbd infra final version horizontal.png",
   },
 };
 
@@ -61,7 +61,7 @@ export default function RootLayout({
               {/* Logo */}
               <Link href="/" className="flex shrink-0 items-center no-underline">
                 <Image
-                  src="/images/bbd_infra_blue.png"
+                  src="/images/bbd infra final version horizontal.png"
                   alt="BBD Infra logo"
                   width={160}
                   height={160}
@@ -104,15 +104,15 @@ export default function RootLayout({
                 {/* Col 1 — Brand */}
                 <div className="space-y-3 lg:col-span-1">
                   <Image
-                    src="/images/bbd_infra_blue.png"
+                    src="/images/bbd infra final version horizontal.png"
                     alt="BBD Infra logo"
-                    width={220}
-                    height={220}
-                    className="h-24 w-auto object-contain"
+                    width={320}
+                    height={320}
+                    className="h-36 w-auto object-contain"
                     style={{ filter: "brightness(1.5) saturate(1.1)" }}
                   />
-                  <p className="text-[13px] leading-[1.8] text-white/65">
-                    BBD Infra Pvt. Ltd. (formerly Balaji Builders &amp; Developers) — delivering water networks,
+                  <p className="text-[13px] leading-[1.8] text-white/65" style={{ marginTop: "-32px" }}>
+                    BBD Infra Pvt. Ltd. (formerly Balaji Builders &amp; Developers), delivering water networks,
                     roads, bridges, and urban infrastructure across Maharashtra.
                   </p>
                   <p className="text-[11px] font-semibold tracking-wide text-white/50">
@@ -144,7 +144,6 @@ export default function RootLayout({
                       { label: "Projects",           href: "/projects" },
                       { label: "Plant & Machinery",  href: "/plant-machinery" },
                       { label: "Financials",         href: "/financials" },
-                      { label: "Careers",            href: "/careers" },
                       { label: "Contact Us",         href: "/contact" },
                     ].map(({ label, href }) => (
                       <li key={href}>

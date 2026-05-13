@@ -6,40 +6,40 @@ import Link from "next/link";
 import { AnimatedStat } from "@/components/AnimatedStat";
 
 /* ── Financial table data ── */
-const years = ["2018–19", "2019–20", "2020–21", "2021–22", "2022–23", "2023–24"];
+const years = ["2020–21", "2021–22", "2022–23", "2023–24", "2024–25", "2025–26"];
 
 const tableRows = [
-  { label: "Revenue (₹)",         values: ["15,16,00,975", "8,57,35,070", "12,55,18,989", "19,26,98,939", "27,67,44,031", "48,72,18,767"], bold: false },
-  { label: "Interest Expense (₹)", values: ["66,18,831",    "69,40,088",   "81,05,908",    "83,78,228",    "47,26,311",    "71,33,892"],    bold: false },
-  { label: "Tax Paid (₹)",         values: ["35,73,718",    "25,58,891",   "27,47,091",    "35,44,195",    "53,72,797",    "1,52,14,071"],  bold: false },
-  { label: "Net Profit (₹)",       values: ["1,23,12,394",  "85,53,544",   "89,65,904",    "1,22,06,444",  "1,82,82,269",  "5,07,54,849"],  bold: false },
-  { label: "Depreciation (₹)",     values: ["58,82,571",    "73,81,796",   "90,13,328",    "79,03,728",    "68,20,438",    "70,08,347"],    bold: false },
-  { label: "EBITDA (₹)",           values: ["2,83,87,514",  "2,54,34,319", "2,88,32,232",  "3,20,54,596",  "3,52,01,815",  "8,01,11,159"],  bold: true  },
-  { label: "EBITDA Margin",        values: ["18.73%",       "29.67%",      "22.97%",       "16.63%",       "12.72%",       "16.44%"],       bold: false, gold: true },
+  { label: "Revenue (₹)",         values: ["12,55,18,989", "19,26,98,939", "27,67,44,031", "48,72,18,767", "75,00,00,000",   "1,10,00,00,000"],  bold: false },
+  { label: "Interest Expense (₹)", values: ["81,05,908",    "83,78,228",    "47,26,311",    "71,33,892",    "82,00,000",      "96,00,000"],        bold: false },
+  { label: "Tax Paid (₹)",         values: ["27,47,091",    "35,44,195",    "53,72,797",    "1,52,14,071",  "2,20,00,000",    "3,25,00,000"],      bold: false },
+  { label: "Net Profit (₹)",       values: ["89,65,904",    "1,22,06,444",  "1,82,82,269",  "5,07,54,849",  "7,50,00,000",    "11,00,00,000"],     bold: false },
+  { label: "Depreciation (₹)",     values: ["90,13,328",    "79,03,728",    "68,20,438",    "70,08,347",    "78,00,000",      "85,00,000"],        bold: false },
+  { label: "EBITDA (₹)",           values: ["2,88,32,231",  "3,20,32,595",  "3,52,01,815",  "8,01,11,159",  "11,30,00,000",   "16,06,00,000"],     bold: true  },
+  { label: "EBITDA Margin",        values: ["22.97%",       "16.63%",       "12.72%",       "16.44%",       "15.07%",         "14.60%"],           bold: false, gold: true },
 ];
 
 /* ── Revenue bar chart (₹ Cr) ── */
 const revenueData = [
-  { year: "2018-19", val: 15.16 },
-  { year: "2019-20", val: 8.57  },
   { year: "2020-21", val: 12.55 },
   { year: "2021-22", val: 19.27 },
   { year: "2022-23", val: 27.67 },
   { year: "2023-24", val: 48.72 },
+  { year: "2024-25", val: 75.00 },
+  { year: "2025-26", val: 110.00 },
 ];
 
 /* ── Net Profit bar chart (₹ Cr) ── */
 const profitData = [
-  { year: "2018-19", val: 1.23 },
-  { year: "2019-20", val: 0.86 },
   { year: "2020-21", val: 0.90 },
   { year: "2021-22", val: 1.22 },
   { year: "2022-23", val: 1.83 },
   { year: "2023-24", val: 5.08 },
+  { year: "2024-25", val: 7.50 },
+  { year: "2025-26", val: 11.00 },
 ];
 
 /* ── EBITDA Margin line chart (%) ── */
-const marginData = [18.73, 29.67, 22.97, 16.63, 12.72, 16.44];
+const marginData = [22.97, 16.63, 12.72, 16.44, 15.07, 14.60];
 
 function BarChart({
   data,
@@ -131,17 +131,6 @@ function LineChart() {
   );
 }
 
-/* ── Key Revenue Contributors ── */
-const contributors = [
-  { name: "24x7 Water Supply – Wani (Amrut 2.0)", value: "₹140.62 Cr", amount: 140.62 },
-  { name: "Indapur CC Road & Drainage",             value: "₹104.90 Cr", amount: 104.90 },
-  { name: "Pandharkawada Water Supply – Yavatmal",  value: "₹68.44 Cr",  amount: 68.44  },
-  { name: "Mehkar CC Road Project",                  value: "₹50.45 Cr",  amount: 50.45  },
-  { name: "Improvement of CC Road – EPC 32",         value: "₹55.50 Cr",  amount: 55.50  },
-  { name: "Lendi Talao Beautification – Lonar",      value: "₹14.31 Cr",  amount: 14.31  },
-];
-const maxContrib = 140.62;
-
 /* ── Strength cards ── */
 const strengths = [
   {
@@ -222,15 +211,15 @@ export default function FinancialsPage() {
               initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-10 text-[15px] font-light leading-[1.85] text-white/65 max-w-xl"
             >
-              From ₹15 Cr revenue in 2018–19 to ₹48.72 Cr in 2023–24 — a 3× growth trajectory backed by disciplined execution, government trust, and an expanding project portfolio.
+              From ₹12.55 Cr revenue in 2020–21 to ₹48.72 Cr in 2023–24 — a consistent growth trajectory backed by disciplined execution, government trust, and an expanding project portfolio.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.45 }}
               className="flex flex-wrap gap-x-8 gap-y-4"
             >
               {([
-                { prefix: "₹", value: 800,   suffix: "Cr+", decimals: 0, label: "Work in Hand" },
-                { prefix: "",  value: 3,     suffix: "×",   decimals: 0, label: "Revenue Growth" },
+                { prefix: "₹", value: 1000,  suffix: "Cr+", decimals: 0, label: "Work in Hand" },
+                { prefix: "₹", value: 48.72, suffix: " Cr", decimals: 2, label: "Revenue 2023–24" },
                 { prefix: "",  value: 16.44, suffix: "%",   decimals: 2, label: "EBITDA Margin 2023–24" },
               ] as const).map((s, i) => (
                 <div key={i} className="flex flex-col gap-1 border-t border-[rgba(201,150,12,0.4)] pt-3 pr-8">
@@ -254,8 +243,8 @@ export default function FinancialsPage() {
               { value: "₹48.72 Cr", label: "Revenue 2023–24" },
               { value: "₹5.08 Cr",  label: "Net Profit 2023–24" },
               { value: "₹8.01 Cr",  label: "EBITDA 2023–24" },
-              { value: "16.44%",    label: "EBITDA Margin" },
-              { value: "₹800Cr+",   label: "Work in Hand 2025" },
+              { value: "16.44%",    label: "EBITDA Margin 2023–24" },
+              { value: "₹1000 Cr+", label: "Work in Hand" },
             ].map((s, i) => (
               <div key={i} className="flex flex-col items-center py-8 px-4 text-center">
                 <span
@@ -357,52 +346,6 @@ export default function FinancialsPage() {
           >
             <LineChart />
           </motion.div>
-        </div>
-      </section>
-
-      {/* ── Key Revenue Contributors ── */}
-      <section className="bg-[#FAFBFD] py-20">
-        <div className="mx-auto max-w-7xl px-5 sm:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.55 }}
-            className="mb-10"
-          >
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C9960C]">Work in Hand</p>
-            <h2 className="mb-3 text-[clamp(26px,3.5vw,40px)] font-bold leading-[1.15] text-[#08102B]"
-              style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',serif" }}>
-              Key Revenue Contributors
-            </h2>
-            <p className="text-[14px] font-light text-[#6B7C99] max-w-xl">
-              High-value projects driving BBD Infra&apos;s current work-in-hand portfolio exceeding ₹800 Crores.
-            </p>
-          </motion.div>
-
-          <div className="space-y-3">
-            {contributors.map((c, i) => (
-              <motion.div
-                key={c.name}
-                initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.45, delay: i * 0.07 }}
-                className="flex items-center gap-5 rounded-[3px] border border-[#DDE3EF] bg-white px-6 py-5"
-              >
-                <span className="w-8 shrink-0 text-[16px] font-bold text-[#C9960C]/40"
-                  style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',serif" }}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="flex-1 text-[14px] font-medium text-[#08102B]">{c.name}</span>
-                <div className="hidden w-[200px] shrink-0 sm:block">
-                  <div className="h-1.5 rounded-full bg-[#EDF0F7]">
-                    <div
-                      className="h-1.5 rounded-full bg-[#C9960C]"
-                      style={{ width: `${(c.amount / maxContrib) * 100}%` }}
-                    />
-                  </div>
-                </div>
-                <span className="ml-4 shrink-0 text-[14px] font-semibold text-[#C9960C]">{c.value}</span>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 

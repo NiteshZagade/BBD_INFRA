@@ -117,7 +117,6 @@ export default function ContactPage() {
               <div className="space-y-3 border-t border-[#DDE3EF] pt-8">
                 {[
                   { label: "Email",  value: "info@bbdinfra.in" },
-                  { label: "Phone",  value: "+91 98765 43210" },
                 ].map((row) => (
                   <div key={row.label} className="flex gap-6">
                     <span className="w-14 shrink-0 text-[13px] font-semibold text-[#08102B]">{row.label}</span>
@@ -209,6 +208,54 @@ export default function ContactPage() {
                   </p>
                 </form>
               )}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Careers ── */}
+      <section className="bg-[#0D1A40] py-20">
+        <div className="mx-auto max-w-7xl px-5 sm:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.55, ease: "easeOut" }}
+          >
+            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#C9960C]">Careers</p>
+            <h2
+              className="mb-4 text-[clamp(28px,3.5vw,44px)] font-bold leading-[1.15] text-white"
+              style={{ fontFamily: "var(--font-cormorant),'Cormorant Garamond',serif" }}
+            >
+              Build Your Career with BBD Infra
+            </h2>
+            <p className="mb-10 max-w-2xl text-[15px] font-light leading-[1.85] text-white/60">
+              We are always looking for driven civil engineers, site supervisors, project managers, and infrastructure professionals to join our growing team across Maharashtra and beyond.
+            </p>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { role: "Civil Engineer", type: "Full-Time", location: "Maharashtra" },
+                { role: "Site Supervisor", type: "Full-Time", location: "Multiple Sites" },
+                { role: "Project Manager", type: "Full-Time", location: "Maharashtra" },
+                { role: "Quantity Surveyor", type: "Full-Time", location: "Maharashtra" },
+                { role: "AutoCAD / Design Engineer", type: "Full-Time", location: "Maharashtra" },
+                { role: "HR & Administration", type: "Full-Time", location: "Mumbai / Nagpur" },
+              ].map((job) => (
+                <div
+                  key={job.role}
+                  className="rounded-[3px] border border-white/10 bg-white/[0.04] p-6 transition hover:border-[#C9960C]/40"
+                >
+                  <p className="mb-1 text-[16px] font-semibold text-white">{job.role}</p>
+                  <p className="text-[12px] font-light text-white/50">{job.type} &middot; {job.location}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 rounded-[3px] border border-[rgba(201,150,12,0.2)] bg-white/[0.03] p-8">
+              <p className="mb-2 text-[15px] font-semibold text-white">Interested in joining us?</p>
+              <p className="text-[13px] font-light leading-[1.8] text-white/60">
+                Send your resume and a brief note about the role you are interested in to{" "}
+                <a href="mailto:info@bbdinfra.in" className="text-[#F59E0B] hover:underline">info@bbdinfra.in</a>
+              </p>
             </div>
           </motion.div>
         </div>

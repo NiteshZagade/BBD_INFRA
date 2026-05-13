@@ -53,7 +53,7 @@ export function AnimatedStat({
   }, [value, decimals, duration, delayMs]);
 
   const formatted =
-    decimals > 0 ? display.toFixed(decimals) : Math.floor(display).toLocaleString();
+    decimals > 0 ? display.toFixed(decimals) : Math.floor(display).toString();
 
   return (
     <span ref={ref} className={className}>
