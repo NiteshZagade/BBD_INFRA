@@ -398,7 +398,6 @@ export default function Home() {
               >
                 <div
                   className="flex items-baseline justify-center gap-1 text-[54px] font-bold leading-none text-[#F59E0B]"
-                  style={{ fontFamily: "var(--font-cormorant), 'Cormorant Garamond', serif" }}
                 >
                   <AnimatedCounter
                     value={item.value}

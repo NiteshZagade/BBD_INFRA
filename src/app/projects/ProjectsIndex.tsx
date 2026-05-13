@@ -27,16 +27,15 @@ const projects: Project[] = [
   { name: "Yelgaon Regional Water Supply Scheme", value: "₹22 Cr", category: "Water Supply", badge: "WATER", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#0D1A40" },
   // Roads & Bridges
   { name: "Jalna–Nanded Expressway", value: "₹700 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Marathwada Region", status: "Active", bgColor: "#1C2B1A" },
-  { name: "Indapur CC Road & Drainage (MSJNM)", value: "₹104.90 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Pune District", status: "Completed", bgColor: "#1C2B1A" },
   { name: "Amdapur–Janephal–Vishvi CC Road", value: "₹55.50 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Buldhana Region", status: "Completed", bgColor: "#1C2B1A" },
-  { name: "SH-390 Highway Improvement", value: "₹55 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Maharashtra", status: "Completed", bgColor: "#1C2B1A" },
-  { name: "Painganga River Bridge", value: "₹25 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Vidarbha Region", status: "Completed", bgColor: "#1C2B1A" },
-  { name: "Urban Development Roads – Mehkar", value: "₹18 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1C2B1A" },
+  { name: "Painganga River Bridge", value: "₹25 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Chandrapur Region", status: "Completed", bgColor: "#1C2B1A" },
+  { name: "Urban Development Roads – Mehkar", value: "₹50 Cr", category: "Roads & Bridges", badge: "ROADS", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1C2B1A" },
   // Urban Development
   { name: "Lendi Talao Rejuvenation (AMRUT 2.0)", value: "₹14.31 Cr", category: "Urban Development", badge: "URBAN", location: "Lonar, Buldhana", status: "Completed", bgColor: "#1A1430" },
   { name: "CC Road & Drain – Indapur MSJNM", value: "₹104.90 Cr", category: "Urban Development", badge: "URBAN", location: "Pune District", status: "Completed", bgColor: "#1A1430" },
-  { name: "Painganga River Bank & Flood Control", value: "₹12 Cr", category: "Urban Development", badge: "URBAN", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1A1430" },
+  { name: "Wainganga River Bank & Flood Control", value: "₹12 Cr", category: "Urban Development", badge: "URBAN", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1A1430" },
   { name: "Chhatrapati Shivaji Maharaj Udyan", value: "₹8 Cr", category: "Urban Development", badge: "URBAN", location: "Buldhana, Maharashtra", status: "Completed", bgColor: "#1A1430" },
+  { name: "Development of Healthy Streets in Shankarnagar and Dharampeth areas of Nagpur city as per Urban Street Design Guidelines", value: "₹25 Cr", category: "Urban Development", badge: "URBAN", location: "Nagpur, Maharashtra", status: "Active", bgColor: "#1A1430" },
   // Renewable Energy
   { name: "Solar Mini Highmast Poles – Gram Panchayats", value: "₹8 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Bhandara, Maharashtra", status: "Completed", bgColor: "#1A1200" },
   { name: "Solar Highmast Street Lighting – Wani", value: "₹6 Cr", category: "Renewable Energy", badge: "SOLAR", location: "Yavatmal, Maharashtra", status: "Completed", bgColor: "#1A1200" },
@@ -195,8 +194,8 @@ export default function ProjectsIndex() {
             >
               {([
                 { prefix: "",  value: 62,  suffix: "+",   decimals: 0, label: "Active Sites" },
-                { prefix: "₹", value: 800, suffix: "Cr+", decimals: 0, label: "Work in Hand" },
-                { prefix: "",  value: 3,   suffix: "+",   decimals: 0, label: "Key Sectors" },
+                { prefix: "₹", value: 1000, suffix: "Cr+", decimals: 0, label: "Work in Hand" },
+                { prefix: "",  value: 4,   suffix: "+",   decimals: 0, label: "Key Sectors" },
               ] as const).map((s, i) => (
                 <div key={i} className="flex flex-col gap-1 border-t border-[rgba(201,150,12,0.4)] pt-3 pr-8">
                   <span className="text-[clamp(20px,2.5vw,26px)] font-bold text-[#F59E0B]"
