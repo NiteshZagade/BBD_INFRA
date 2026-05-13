@@ -73,7 +73,7 @@ export default function AboutPage() {
               className="flex flex-wrap gap-x-10 gap-y-5"
             >
               {([
-                { prefix: "₹", value: 800,  suffix: "Cr+", decimals: 0, label: "Work in Hand" },
+                { prefix: "₹", value: 1000, suffix: "Cr+", decimals: 0, label: "Work in Hand" },
                 { prefix: "",  value: 62,   suffix: "+",   decimals: 0, label: "Active Sites" },
                 { prefix: "",  value: 2014, suffix: "",    decimals: 0, label: "Est. in Maharashtra" },
               ] as const).map((s, i) => (

@@ -8,25 +8,25 @@ import { AnimatedStat } from "@/components/AnimatedStat";
 type FleetItem = { name: string; slug: string };
 
 const fleet: FleetItem[] = [
-  { name: "350TPH Crusher Plant",   slug: "crusher-350tph" },
-  { name: "RMC Plants",             slug: "rmc-plants" },
-  { name: "VögelePaver",            slug: "vogele-paver" },
-  { name: "Grader",                 slug: "grader" },
-  { name: "Soil Compactor",         slug: "soil-compactor" },
-  { name: "Baby Roller",            slug: "baby-roller" },
-  { name: "Tandem Roller",          slug: "tandem-roller" },
-  { name: "Excavator",              slug: "hyundai-215-excavators" },
-  { name: "Tippers 6 Tyres",        slug: "tippers-6-tyres" },
-  { name: "Tippers 10 Tyres",       slug: "tippers-10-tyres" },
-  { name: "Tippers 12 Tyres",       slug: "tippers-12-tyres" },
-  { name: "Tractors",               slug: "tractors" },
-  { name: "Backhoe Loaders",        slug: "backhoe-loaders" },
-  { name: "Loaders",                slug: "loaders" },
-  { name: "Transit Mixers",         slug: "transit-mixers" },
-  { name: "Self Loading Concrete Mixer", slug: "ajax-fiori" },
-  { name: "Hydra",                  slug: "hydra" },
-  { name: "Water Tankers",          slug: "water-tankers" },
-  { name: "Diesel Tanker",          slug: "diesel-tanker" },
+  { name: "250 TPH Crusher Plants",  slug: "crusher-350tph" },
+  { name: "RMC Plants",              slug: "rmc-plants" },
+  { name: "Vögele Pavers",           slug: "vogele-paver" },
+  { name: "Graders",                 slug: "grader" },
+  { name: "Soil Compactors",         slug: "soil-compactor" },
+  { name: "Baby Rollers",            slug: "baby-roller" },
+  { name: "Tandem Rollers",          slug: "tandem-roller" },
+  { name: "Excavators",              slug: "hyundai-215-excavators" },
+  { name: "Tippers 6 Tyres",         slug: "tippers-6-tyres" },
+  { name: "Tippers 10 Tyres",        slug: "tippers-10-tyres" },
+  { name: "Tippers 12 Tyres",        slug: "tippers-12-tyres" },
+  { name: "Tractors",                slug: "tractors" },
+  { name: "Backhoe Loaders",         slug: "backhoe-loaders" },
+  { name: "Loaders",                 slug: "loaders" },
+  { name: "Transit Mixers",          slug: "transit-mixers" },
+  { name: "Self Loading Concrete Mixers", slug: "ajax-fiori" },
+  { name: "Hydras",                  slug: "hydra" },
+  { name: "Water Tankers",           slug: "water-tankers" },
+  { name: "Diesel Tankers",          slug: "diesel-tanker" },
 ];
 
 const candidates = (slug: string) => [
@@ -167,7 +167,6 @@ export default function PlantMachineryPage() {
                   </div>
                   <div className="border-t border-[#e6eaf4] px-4 py-3 text-left">
                     <p className="text-[14px] font-semibold text-[#08102B]">{item.name}</p>
-                    <p className="mt-0.5 text-[11px] font-medium uppercase tracking-[0.1em] text-[#C9960C]">View →</p>
                   </div>
                 </button>
               </motion.figure>
